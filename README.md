@@ -30,3 +30,22 @@ The plan is the following:
 * Should we in parallel hand-write a first version of the Instance Translator?
 * Should we start by focusing on DDI 2.X or 3.X?
 * Would we do two conceptual mappings, one for 2.X and one for 3.X?
+
+## Acknowledgements
+
+This repository is the result of work that was started at the workshop
+*Semantic Statistics for Social, Behavioural, and Economic Sciences:
+Leveraging the DDI Model for the Web* at Dagstuhl, 11-16 September 2011.
+
+http://www.dagstuhl.de/11372
+
+Contributors include:
+
+* Olof Olsson
+
+The workshop was organized by:
+
+* Richard Cyganiak (DERI, National University of Ireland - Galway, IE)
+* Arofan Gregory (Open Data Foundation - Tucson, US)
+* Wendy Thomas (Population Center, University of Minnesota, US)
+* Joachim Wackerow (GESIS - Leibniz Institute for the Social Sciences, DE)
