@@ -1,0 +1,703 @@
+﻿Mapping: DDI 2.1/2.5/3.1 → DDI-RDF
+
+
+Comments
+- please add cardinalities, e.g.:  [n] /Thomas
+- please add your parts in the generic example files  /Thomas 
+
+
+-category of mapping
+        -[easy]         easy mapping
+        -[complicated] complicated (with contstraints)
+        -[fuzzy]         fuzzy (workaround, e.g. instrument for for codebook)
+
+
+Study (http://ddialliance.org/def#Study)
+
+
+URI: [only unique if agency is part of URI]
+
+
+DDI 2.1: 
+1. //codeBook/stdyDscr/@ID
+2. //codeBook/@ID
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- containsVariable (→ Variable)
+  DDI 2.1: codeBook/dataDscr/var [n]
+  DDI 2.5:
+  DDI 3.1: 
+- isMeasureOf (→ Universe)
+  DDI 2.1: stdyDscr/stdyInfo/sumDscr/universe
+  DDI 2.5:
+  DDI 3.1: 
+- hasInstrument (→ Instrument)
+  DDI 2.1: instrument-<study URI> [1]
+  DDI 2.5:
+  DDI 3.1: 
+- hasCoverage (→ Coverage)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1: 
+- dc:hasPart (→ LogicalDataSet)
+  DDI 2.1: logicalDataSet-<study URI> 
+  DDI 2.5:
+  DDI 3.1: 
+- hasDataFile (→ DataFile)
+  DDI 2.1: <study URI>-fileDscr/fileTxt/fileName [n]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- dc:identifier (string)
+  DDI 2.1: 
+  1. codeBook/stdyDscr/@ID
+  2. codeBook/@ID
+  DDI 2.5:
+  DDI 3.1:
+- dc:title (string)
+  DDI 2.1: codeBook/stdyDscr/citation/titlStmt/titl [1]
+  DDI 2.5:
+  DDI 3.1:
+- dc:abstract (string)
+  DDI 2.1: codeCode/stdyDscr/stdyInfo/abstract [1]
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+Universe (http://ddialliance.org/def#Universe)
+
+
+URI:
+
+
+DDI 2.1: 
+//codeBook/stdyDscr/stdyInfo/sumDscr/universe [n]
+[/Thomas]
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+NO object properties
+
+
+datatype properties:
+
+
+- skos:definition (string)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+skos:Concept (http://www.w3.org/2004/02/skos/core#Concept)
+
+
+Context:
+
+
+Concept
+
+
+URI:
+
+
+DDI 2.1: 
+1. concept-</codeBook/dataDscr/var/concept/@ID> 
+2. concept-</codeBook/dataDscr/var/concept> 
+[→ variable-independent concepts] [/Thomas]
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- skos:inScheme (→ skos:ConceptScheme)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- skos:prefLabel  (string)
+  DDI 2.1: /codeBook/dataDscr/var/concept
+  DDI 2.5:
+  DDI 3.1:
+- skos:notation (string)
+  DDI 2.1: /codeBook/dataDscr/var/concept
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+skos:Concept (http://www.w3.org/2004/02/skos/core#Concept)
+
+
+Context:
+
+
+Value, Category
+
+
+URI:
+
+
+DDI 2.1: 
+</codeBook/dataDscr/var/catValu>-</codeBook/dataDscr/var/labl> [/Thomas]
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- skos:inScheme (→ skos:ConceptScheme)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- skos:prefLabel  (string)
+  DDI 2.1: 1. /codeBook/dataDscr/var/labl
+  DDI 2.5:
+  DDI 3.1:
+- skos:notation (string)
+  DDI 2.1: /codeBook/dataDscr/var/catValu
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+skos:ConceptScheme (http://www.w3.org/2004/02/skos/core#ConceptScheme)
+Representation (http://ddialliance.org/def#Representation)
+
+
+URI:
+
+
+DDI 2.1: 
+representation-<variable URI> [/Thomas]
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- skos:hasTopConcept (→ skos:Concept)
+  DDI 2.1: 
+  1. concept-</codeBook/dataDscr/var/concept/@ID> 
+  2. concept-</codeBook/dataDscr/var/concept> 
+  [/Thomas]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+NO datatype properties
+
+
+
+
+-----
+
+
+Ben
+
+
+
+
+Variable (http://ddialliance.org/def#Variable)
+
+
+URI:
+
+
+DDI 2.1:
+1. <study URI>-<codeBook/dataDscr/var/@name>
+2. <study URI>-<codeBook/dataDscr/var/@id>
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- hasConcept (→ skos:Concept)
+  DDI 2.1: 
+  <./catgry/catValu>-<./catgry/labl> [1]
+  [context node: //codeBook/dataDscr/var]
+  DDI 2.5:
+  DDI 3.1: 
+- holdsMeasurementOf (→ Universe)
+  DDI 2.1: 
+  1. universe-<./universe@ID> [n]
+  2. universe-<./universe> [n]
+  [context node: //codeBook/dataDscr/var]
+  DDI 2.5:
+  DDI 3.1: 
+- hasRepresentation (→ Representation, skos:ConceptScheme)
+  DDI 2.1: 
+  1. representation-<study URI>-<./@name> [1]
+  2. representation-<study URI>-<./@id> [1]
+  [context node: //codeBook/dataDscr/var]
+  DDI 2.5:
+  DDI 3.1: 
+- isPopulatedBy (→ Instrument)
+  DDI 2.1: instrument-<study URI> [1]
+  DDI 2.5:
+  DDI 3.1: 
+- hasQuestion (→ Question)
+  DDI 2.1: 
+  1. ./qstn/@ID [n]
+  2. <./qstn/../@ID> [n]
+  3. ./qstn/qstnLit [n]
+  [context node: //codeBook/dataDscr/var]
+  DDI 2.5:
+  DDI 3.1: 
+- usesDataElement (→ DataElement)
+  DDI 2.1: [no DataElement in DDI 2.1]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- dc:identifier (string)
+  DDI 2.1: 
+  1. <study URI>-<codeBook/dataDscr/var/@name>
+  2. <study URI>-<codeBook/dataDscr/var/@id>
+  DDI 2.5:
+  DDI 3.1:
+- skos:prefLabel (string)
+  DDI 2.1: codeBook/dataDscr/var/labl
+  DDI 2.5:
+  DDI 3.1:
+- dc:description (string)
+  DDI 2.1: codeBook/dataDscr/var/txt
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+DataElement (http://ddialliance.org/def#DataElement) [no DataElement in DDI 2.1]
+
+
+URI:
+
+
+DDI 2.1: 
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- holdsMeasurementOf (→ Universe)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1: 
+- hasConcept (→ skos:Concept)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1: 
+- hasRepresentation (→ Representation, skos:ConceptScheme)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- skos:prefLabel (string)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1:
+- dc:description (string)
+  DDI 2.1: 
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+DataFile (http://ddialliance.org/def#DataFile)
+
+
+URI:
+
+
+DDI 2.1: 
+- if </codeBook/fileDscr/fileTxt/fileName>: <study URI>-</codeBook/fileDscr/fileTxt/fileName> [0..1] //what if there is NO fileName? /Ben
+-  if NOT </codeBook/fileDscr/fileTxt/fileName>: <study URI>-DataFile<sequential number> /Thomas
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- hasCoverage (→ Coverage)
+  DDI 2.1: coverage-<study URI> [study-dependent coverage] [1]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+
+
+datatype properties:
+
+
+- dc:identifier (string)
+  DDI 2.1: /codeBook/fileDscr/fileTxt/fileName [0..1]
+  DDI 2.5:
+  DDI 3.1:
+- dc:description (string)
+  DDI 2.1: /codeBook/fileDscr/fileTxt/fileCont [0..1]
+  DDI 2.5:
+  DDI 3.1:
+- caseQuantity (string)
+  DDI 2.1: /codeBook/fileDscr/fileTxt/dimensns/caseQnty [n]
+  DDI 2.5:
+  DDI 3.1:
+- dc:format (string)
+  DDI 2.1: /codeBook/fileDscr/fileTxt/fileType [0..1]
+  DDI 2.5:
+  DDI 3.1:
+- dc:provenance (string)
+  DDI 2.1: /codeBook/fileDscr/fileTxt/filePlac [0..1]
+  DDI 2.5:
+  DDI 3.1:
+- owl:versionInfo (string)
+  DDI 2.1: 
+  1. /codeBook/fileDscr/fileTxt/verStmt/version [0..1]
+  2. /codeBook/fileDscr/fileTxt/verStmt/version/@date [0..1]
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+DescriptiveStatistics (http://ddialliance.org/def#DescriptiveStatistics)
+
+
+[per variable should also be included: valid cases, total cases]
+
+
+URI:
+
+
+DDI 2.1: descriptiveStatistics-<variable URI>-</codeBook/dataDscr/var/catValu>
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- hasStatisticsVariable (→ Variable)
+  DDI 2.1:
+  1. <study URI>-<../../@name> [1]
+  2. <study URI>-<../../@id> [1]
+  [context node: //codeBook/dataDscr/var/catgry/catValu]
+  DDI 2.5:
+  DDI 3.1: 
+- hasStatisticsCategory (→ skos:Concept)
+  DDI 2.1:
+  <.>-./labl> [n]
+  [context node: //codeBook/dataDscr/var/catgry/catValu]
+  DDI 2.5:
+  DDI 3.1: 
+- hasStatisticsDataFile (→ DataFile)
+  DDI 2.1: 
+  - if </codeBook/fileDscr/fileTxt/fileName>: <study URI>-</codeBook/fileDscr/fileTxt/fileName> [n]
+  -  if NOT </codeBook/fileDscr/fileTxt/fileName>: <study URI>-DataFile<sequential number> 
+  DDI 2.5:
+  DDI 3.1: 
+
+
+
+
+datatype properties:
+
+
+- frequency (string)
+  DDI 2.1: 
+  ../catStat[type=’freq’] [n]
+  [context node: //codeBook/dataDscr/var/catgry/catValu]
+  DDI 2.5:
+  DDI 3.1:
+- percentage (string)
+  DDI 2.1:
+  ../catStat[type=’percent’] [n]
+  [context node: //codeBook/dataDscr/var/catgry/catValu]
+  DDI 2.5:
+  DDI 3.1:
+- weightedFrequency (string) 
+  DDI 2.1: 
+  <./catStat[type=’freq’]>-
+  1. <../catStat/@wgt-var> [n]
+  2. <./catStat/@weight> [n]
+  [→ n weights are possible]
+  [context node: //codeBook/dataDscr/var/catgry/catValu]
+  DDI 2.5:
+  DDI 3.1:
+- weightedBy (string) [variable]
+  DDI 2.1: 
+  1. <study URI>-<../../@name>
+  2. <study URI>-<../../@id>
+  1. <../catStat/@wgt-var> [n]
+  2. <./catStat/@weight> [n]
+  [unclear distinction in DDI 2.1]
+  [→ n weights are possible]
+  [context node: //codeBook/dataDscr/var/catgry/catValu]
+  DDI 2.5:
+  DDI 3.1:
+
+
+
+
+-----
+
+
+Thomas
+
+
+
+
+Instrument (http://ddialliance.org/def#Instrument)
+
+
+URI:
+
+
+DDI 2.1: instrument-<study URI> 
+[no instrument in DDI 2.1; study-dependent instrument; only if at least 1 question]
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- usesQuestion (→ Question)
+  DDI 2.1:  
+        1. <question URI> [n]
+2. <./qstn/../@ID> [n]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+NO datatype properties
+
+
+
+
+Question (http://ddialliance.org/def#Question)
+
+
+URI:
+
+
+DDI 2.1: 
+1. /codeBook/dataDscr/var/qstn/@ID
+2. /codeBook/dataDscr/var/qstn/qstnLit
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- hasResponseDomain (→ Representation, skos:ConceptScheme)
+  DDI 2.1: 
+  representation-
+  1. <//codeBook/stdyDscr/@ID>-
+      1. <../@name>
+      2. <../@ID>
+  2. <//codeBook/@ID>-
+      1. <../@name>
+      2. <../@ID>
+  [1]
+  [context node: //codeBook/dataDscr/var/qstn]
+  DDI 2.5:
+  DDI 3.1: 
+- hasConcept (→ skos:Concept)
+  DDI 2.1: 
+  1. concept-<../concept/@ID> 
+  2. concept-<../concept> 
+  [n]
+  [context node: //codeBook/dataDscr/var/qstn]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- literalText (string)
+  DDI 2.1: /codeBook/dataDscr/var/qstn/qstnLit
+  DDI 2.5:
+  DDI 3.1: 
+
+
+
+
+Coverage (http://purl.org/dc/terms/#Coverage)
+
+
+URI:
+
+
+DDI 2.1: coverage-<study URI> [study-dependent coverage]
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- dcterms:spatial (→ dcterms:Location)
+  DDI 2.1: location-<study URI> [study-dependent location]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- dcterms:subject (string)
+  DDI 2.1: 
+  1. /codeBook/stdyDscr/stdyInfo/subject/keyword [n] 
+  2. /codeBook/stdyDscr/stdyInfo/subject/topcClas [n] 
+  - if keywords and topcClas → keyword (@vocab) [separated by ‘;’]
+  - if only keyword → keyword (@vocab) [separated by ‘;’]
+  - if only topcClas → topcClas (@vocab) [separated by ‘;’]
+[keyword may contain free text, because of the naming of elements; no clear distinction in DDI 2.1; topcClas must, keyword may correspond to a controlled vocabulary]
+  DDI 2.5:
+  DDI 3.1: 
+- dcterms:temporal (string)
+  DDI 2.1:
+  - if //codeBook/stdyDscr/stdyInfo/sumDscr/timePrd/@event = 'start' and //codeBook/stdyDscr/stdyInfo/sumDscr/timePrd/@event = 'end':
+from <//codeBook/stdyDscr/stdyInfo/sumDscr/timePrd[@event = 'start']/@date> to <//codeBook/stdyDscr/stdyInfo/sumDscr/timePrd[@event = 'end']/@date>
+  - if //codeBook/stdyDscr/stdyInfo/sumDscr/timePrd/@event = ‘single’]:
+       //codeBook/stdyDscr/stdyInfo/sumDscr/timePrd[@event = ‘single’]/@date
+  - if //codeBook/stdyDscr/stdyInfo/sumDscr/timePrd:
+       //codeBook/stdyDscr/stdyInfo/sumDscr/timePrd/@date
+  DDI 2.5:
+  DDI 3.1: 
+
+
+
+
+dcterms:Location (http://purl.org/dc/terms/#Coverage)
+
+
+URI:
+
+
+DDI 2.1: location-<study URI> [study-dependent location]
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+NO object properties
+
+
+datatype properties:
+
+
+- rdfs:label (string)
+  DDI 2.1: 
+  1. /codeBook/stdyDscr/stdyInfo/sumDscr/nation
+  2. /codeBook/stdyDscr/stdyInfo/sumDscr/geogCover
+  - if nation → nation [narrower]
+  - if only geogCover → geogCover [broader; geopgCover corresponds to dc:coverage]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+
+
+LogicalDataSet (http://ddialliance.org/def#LogicalDataSet)
+
+
+URI: 
+
+
+DDI 2.1: logicalDataSet-<study URI>
+DDI 2.5:
+DDI 3.1: 
+
+
+object properties:
+
+
+- containsVariable (→ Variable)
+  DDI 2.1: <variable URI> [n]
+  DDI 2.5:
+  DDI 3.1: 
+- hasDataFile (→ DataFile)
+  DDI 2.1: <dataFile URI> [n]
+  DDI 2.5:
+  DDI 3.1: 
+- hasNCube (→ qb:DataSet)
+  DDI 2.1:
+  DDI 2.5:
+  DDI 3.1: 
+- hasCoverage (→ Coverage)
+  DDI 2.1: <coveage URI> [1]
+  DDI 2.5:
+  DDI 3.1: 
+- hasInstrument (→ Instrument)
+  DDI 2.1: <instrument URI> [1]
+  DDI 2.5:
+  DDI 3.1: 
+- isMeasureOf (→ Universe)
+  DDI 2.1: <universe URI> [n]
+  DDI 2.5:
+  DDI 3.1: 
+
+
+datatype properties:
+
+
+- dc:title (string)
+  DDI 2.1: //codeBook/stdyDscr/citation/titlStmt/titl [1] [better for search if the study title is redundant]
+  DDI 2.5:
+  DDI 3.1:
