@@ -41,6 +41,8 @@ http://www.dagstuhl.de/11372
 
 Contributors include:
 
+* Thomas Bosch
+* Benjamin Zapilko
 * Olof Olsson
 
 The workshop was organized by:
