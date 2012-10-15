@@ -43,9 +43,7 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
     <xsl:strip-space elements="*"/>
 
     <!-- used as a prefix for elements -->
-    <xsl:variable name="studyURI">
-           <xsl:value-of select="/ddilc:DDIInstance/s:StudyUnit/@id"/>
-    </xsl:variable>
+    <xsl:param name="studyURI">http://some.uri.to.my.data.defined.as.a.param/<xsl:value-of select="/ddilc:DDIInstance/s:StudyUnit/@id"/></xsl:param>
     
     
     <xsl:template match="/ddilc:DDIInstance ">
@@ -69,7 +67,7 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
             
 	
             <!--Question -->
-            
+            <xsl:apply-templates select="//d:QuestionItem" />
         
             <!-- Coverage -->
             
@@ -85,12 +83,21 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
     <!-- Study -->
     <xsl:template match="s:StudyUnit">
         <rdf:Description>
-            <xsl:attribute name="rdf:about">
-                <xsl:text>http://ddialliance.org/data/URI</xsl:text>
-            </xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" /></xsl:attribute>
             <rdf:type rdf:resource="http://ddialliance.org/def#Study" />
             
             <xsl:apply-templates select="r:Citation" />
+            
+            <!-- identifier -->
+            <dc:identifier><xsl:value-of select="@id"/></dc:identifier>
+            
+            <!-- abstract -->
+            <xsl:for-each select="s:Abstract">
+                <dc:abstract>
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="r:Content/@xml:lang" /></xsl:attribute>
+                    <xsl:text><xsl:value-of select="r:Content"/></xsl:text>
+                </dc:abstract>
+            </xsl:for-each>
             
             <!-- ddionto:isMeasureOf -->
             <!-- ddionto:HasInstrument -->
@@ -102,7 +109,7 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
                 <xsl:element name="ddionto:ContainsVariable">
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$studyURI"/>
-                        <xsl:text>-</xsl:text>
+                        <xsl:text>variable-</xsl:text>
                         <xsl:value-of select="./@id"/>                        
                     </xsl:attribute>
                 </xsl:element>

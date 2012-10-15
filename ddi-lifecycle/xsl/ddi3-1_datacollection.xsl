@@ -46,7 +46,17 @@ Assigned : Olof Olsson
     <!--Question -->
     <xsl:template match="d:QuestionItem">
         <rdf:Description>
+            <xsl:attribute name="rdf:about">
+                <xsl:text><xsl:value-of select="$studyURI" /></xsl:text><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />
+            </xsl:attribute>            
+            <rdf:type rdf:resource="http://ddialliance.org/def#Question"/>
             
+            <xsl:for-each select="d:QuestionText">
+                <ddionto:literalText>
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang" /></xsl:attribute>
+                    <xsl:value-of select="d:LiteralText/d:Text" />
+                </ddionto:literalText>                
+            </xsl:for-each>
         </rdf:Description>
     </xsl:template>    
     
