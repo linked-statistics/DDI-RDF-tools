@@ -52,7 +52,7 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
             <xsl:apply-templates select="s:StudyUnit" />
 
             <!-- Universe -->
-
+            <xsl:apply-templates select="//c:Universe" />
                     
             <!-- DataFile -->
 
@@ -100,6 +100,12 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
             </xsl:for-each>
             
             <!-- ddionto:isMeasureOf -->
+            <xsl:for-each select="//c:Universe">
+                <xsl:attribute name="ddionto:isMeasureOf">
+                    <xsl:value-of select="$studyURI"/>
+                    <xsl:text>#universe-</xsl:text><xsl:value-of select="@id"/>
+                </xsl:attribute>
+            </xsl:for-each>
             <!-- ddionto:HasInstrument -->
             <!-- dc:hasPart -->
             <!-- ddionto:HasDataFile -->
@@ -127,5 +133,19 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
                 <xsl:value-of select="." />
             </dc:title>
         </xsl:for-each>
+    </xsl:template>
+    
+    <xsl:template match="c:Universe">
+        <rdf:Description>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" /><xsl:text>#universe-</xsl:text>
+            <xsl:value-of select="./@id"/></xsl:attribute>
+            <rdf:type rdf:resource="http://ddialliance.org/def#Universe" />
+            <xsl:for-each select="c:HumanReadable">
+                <skos:definition>
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang"/></xsl:attribute>
+                    <xsl:value-of select="."/>
+                </skos:definition>
+            </xsl:for-each>
+        </rdf:Description>
     </xsl:template>
 </xsl:stylesheet>
