@@ -47,7 +47,7 @@ Assigned : Olof Olsson
     <xsl:template match="d:QuestionItem|d:MultipleQuestionItem">
         <rdf:Description>
             <xsl:attribute name="rdf:about">
-                <xsl:text><xsl:value-of select="$studyURI" /></xsl:text><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />
+                <xsl:value-of select="$studyURI" /><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />
             </xsl:attribute>            
             <rdf:type rdf:resource="http://ddialliance.org/def#Question"/>
             

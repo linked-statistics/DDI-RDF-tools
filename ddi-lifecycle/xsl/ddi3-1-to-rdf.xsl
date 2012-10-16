@@ -107,16 +107,18 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <xsl:for-each select="s:Abstract">
                 <dc:abstract>
                     <xsl:attribute name="xml:lang"><xsl:value-of select="r:Content/@xml:lang" /></xsl:attribute>
-                    <xsl:text><xsl:value-of select="r:Content"/></xsl:text>
+                    <xsl:value-of select="r:Content"/>
                 </dc:abstract>
             </xsl:for-each>
             
             <!-- ddionto:isMeasureOf -->
             <xsl:for-each select="//c:Universe">
-                <xsl:attribute name="ddionto:isMeasureOf">
-                    <xsl:value-of select="$studyURI"/>
-                    <xsl:text>#universe-</xsl:text><xsl:value-of select="@id"/>
-                </xsl:attribute>
+                <ddionto:isMeasureOf>
+                    <xsl:attribute name="rdf:resource">
+                        <xsl:value-of select="$studyURI"/>
+                        <xsl:text>#universe-</xsl:text><xsl:value-of select="@id"/>
+                    </xsl:attribute>
+                </ddionto:isMeasureOf>
             </xsl:for-each>
             <!-- ddionto:HasInstrument -->
             <!-- dc:hasPart -->
