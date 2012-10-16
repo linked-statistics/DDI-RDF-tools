@@ -105,10 +105,10 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             
             <!-- abstract -->
             <xsl:for-each select="s:Abstract">
-                <dc:abstract>
+                <dcterms:abstract>
                     <xsl:attribute name="xml:lang"><xsl:value-of select="r:Content/@xml:lang" /></xsl:attribute>
                     <xsl:value-of select="r:Content"/>
-                </dc:abstract>
+                </dcterms:abstract>
             </xsl:for-each>
             
             <!-- ddionto:isMeasureOf -->
@@ -120,6 +120,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                     </xsl:attribute>
                 </ddionto:isMeasureOf>
             </xsl:for-each>
+            
             <!-- ddionto:HasInstrument -->
             <!-- dc:hasPart -->
             <!-- ddionto:HasDataFile -->
@@ -151,8 +152,10 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     
     <xsl:template match="c:Universe">
         <rdf:Description>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" /><xsl:text>#universe-</xsl:text>
-            <xsl:value-of select="./@id"/></xsl:attribute>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />
+                <xsl:text>#universe-</xsl:text>
+                <xsl:value-of select="@id"/>
+            </xsl:attribute>
             <rdf:type rdf:resource="http://ddialliance.org/def#Universe" />
             <xsl:for-each select="c:HumanReadable">
                 <skos:definition>
@@ -160,6 +163,16 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                     <xsl:value-of select="."/>
                 </skos:definition>
             </xsl:for-each>
+        </rdf:Description>
+    </xsl:template>
+    
+    <xsl:template match="r:Coverage">
+        <rdf:Description>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />
+                <xsl:text>#coverage-</xsl:text>
+                <xsl:value-of select="@id"/>
+            </xsl:attribute>
+            <rdf:type rdf:resource="http://ddialliance.org/def#Coverage" />            
         </rdf:Description>
     </xsl:template>
 </xsl:stylesheet>

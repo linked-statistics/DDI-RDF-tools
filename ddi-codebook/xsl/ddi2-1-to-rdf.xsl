@@ -36,7 +36,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     <xsl:param name="lang">en</xsl:param>
 
     <!-- used as a prefix for elements -->
-    <xsl:variable name="studyURI">
+    <xsl:param name="studyURI">
             <xsl:choose>
                     <xsl:when test="//ddicb:codeBook/ddicb:stdyDscr/@ID">
                             <xsl:value-of select="//ddicb:codeBook/ddicb:stdyDscr/@ID"/>
@@ -45,7 +45,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                             <xsl:value-of select="//ddicb:codeBook/@ID"/>
                     </xsl:when>
             </xsl:choose>
-    </xsl:variable>
+    </xsl:param>
 
     <xsl:template match="ddicb:codeBook">
         <!-- output of doctype -->
