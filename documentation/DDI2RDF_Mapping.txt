@@ -22,7 +22,7 @@ DDI 2.1:
 1. //codeBook/stdyDscr/@ID
 2. //codeBook/@ID
 DDI 2.5:
-DDI 3.1: 
+DDI 3.1: /ddi:DDIInstance/s:StudyUnit/@id
 
 
 object properties:
@@ -33,9 +33,9 @@ object properties:
   DDI 2.5:
   DDI 3.1: 
 - isMeasureOf (→ Universe)
-  DDI 2.1: stdyDscr/stdyInfo/sumDscr/universe
+  DDI 2.1: stdyDscr/stdyInfo/sumDscr/universe [easy]
   DDI 2.5:
-  DDI 3.1: 
+  DDI 3.1: /ddi:DDIInstance/s:StudyUnit/c:ConceptualComponent/c:UniverseScheme/c:Universe [easy]
 - hasInstrument (→ Instrument)
   DDI 2.1: instrument-<study URI> [1]
   DDI 2.5:

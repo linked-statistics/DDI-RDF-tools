@@ -44,7 +44,7 @@ Assigned : Olof Olsson
 
 
     <!--Question -->
-    <xsl:template match="d:QuestionItem">
+    <xsl:template match="d:QuestionItem|d:MultipleQuestionItem">
         <rdf:Description>
             <xsl:attribute name="rdf:about">
                 <xsl:text><xsl:value-of select="$studyURI" /></xsl:text><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />

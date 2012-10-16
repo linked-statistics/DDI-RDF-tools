@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
+DDI Ontology draft: https://raw.github.com/FranckCo/DDIOnto/master/ddiontology.ttl
+
+to validate output:
+http://www.w3.org/RDF/Validator/
+
+params:
+studyURI the prefix for the elements uri:s eg: http://i.am.a.url.com/study/123
+
+developed by:
+Bosch, Thomas <Thomas.Bosch at gesis.org>
+Olsson, Olof <olof.olsson at snd.gu.se>
+Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
 -->
 <xsl:stylesheet version="1.0" 
     xmlns:xsl       = "http://www.w3.org/1999/XSL/Transform"
@@ -46,7 +58,7 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
     <xsl:param name="studyURI">http://some.uri.to.my.data.defined.as.a.param/<xsl:value-of select="/ddilc:DDIInstance/s:StudyUnit/@id"/></xsl:param>
     
     
-    <xsl:template match="/ddilc:DDIInstance ">
+    <xsl:template match="/ddilc:DDIInstance">
         <rdf:RDF>
             <!-- Study -->
             <xsl:apply-templates select="s:StudyUnit" />
@@ -67,7 +79,7 @@ Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
             
 	
             <!--Question -->
-            <xsl:apply-templates select="//d:QuestionItem" />
+            <xsl:apply-templates select="//d:QuestionItem|//d:MultipleQuestionItem" />
         
             <!-- Coverage -->
             
