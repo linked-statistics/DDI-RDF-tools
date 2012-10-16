@@ -101,7 +101,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     <xsl:template match="ddicb:stdyDscr">        
         <rdf:Description>
             <xsl:attribute name="rdf:about">
-                <xsl:text>http://ddialliance.org/data/</xsl:text>
+                 <xsl:value-of select="$studyURI" />
                 <xsl:choose>
                     <xsl:when test="ddicb:citation/ddicb:titlStmt/ddicb:IDNo!=''">
                         <xsl:value-of select="ddicb:citation/ddicb:titlStmt/ddicb:IDNo" />
@@ -120,12 +120,12 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             
             <!-- ddionto:HasInstrument -->
             <xsl:element name="ddionto:HasInstrument">
-                <xsl:attribute name="rdf:resource">instrument-<xsl:value-of select="$studyURI"/></xsl:attribute>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-instrument</xsl:attribute>
             </xsl:element>
             
             <!-- dc:hasPart -->
             <xsl:element name="dc:hasPart">
-                <xsl:attribute name="rdf:resource">logicalDataSet-<xsl:value-of select="$studyURI"/></xsl:attribute>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-logicalDataSet</xsl:attribute>
             </xsl:element>
             
             <!-- ddionto:HasDataFile -->
@@ -158,7 +158,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
 
             <!-- ddionto:HasCoverage -->
             <xsl:element name="ddionto:HasCoverage">
-                <xsl:attribute name="rdf:resource">coverage-<xsl:value-of select="$studyURI"/></xsl:attribute>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-coverage</xsl:attribute>
             </xsl:element>
 
             <dc:identifier>

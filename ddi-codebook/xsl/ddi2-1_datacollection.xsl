@@ -31,12 +31,7 @@
 					<!-- ............... -->
 					<!-- URI: -->
 						<xsl:text disable-output-escaping="yes"><![CDATA[ rdf:about="instrument-]]></xsl:text>
-						<xsl:choose>
-								<xsl:when test="//ddicb:codeBook/ddicb:stdyDscr/ddicb:citation/ddicb:titlStmt/ddicb:IDNo != ''">
-									<xsl:value-of select="//ddicb:codeBook/ddicb:stdyDscr/ddicb:citation/ddicb:titlStmt/ddicb:IDNo" />
-								</xsl:when>
-								<xsl:otherwise><xsl:value-of select="../ID" /></xsl:otherwise>
-							</xsl:choose>
+						<xsl:value-of select="$studyURI"/>
 						<xsl:text disable-output-escaping="yes"><![CDATA[">]]></xsl:text>
 					<!-- ..... -->
 					
