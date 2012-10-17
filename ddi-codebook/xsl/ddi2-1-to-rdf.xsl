@@ -22,7 +22,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     xmlns:skos      = "http://www.w3.org/2004/02/skos/core#" 
     xmlns:dc        = "http://purl.org/dc/elements/1.1/"
     xmlns:dcterms   = "http://purl.org/dc/terms/" 
-    xmlns:disco   = "http://vocab.ddialliance.org/discovery"
+    xmlns:disco   = "http://vocab.ddialliance.org/discovery#"
     xmlns:ddi       = "http://ddialliance.org/data/" 
     xmlns:ddicb     = "http://www.icpsr.umich.edu/DDI">
     
@@ -109,24 +109,24 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                     <xsl:otherwise><xsl:value-of select="../ID" /></xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://ddialliance.org/def#Study" />
+            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Study" />
 
             <!-- disco:isMeasureOf -->
             <xsl:for-each select="ddicb:stdyInfo/ddicb:sumDscr/ddicb:universe">
-                <xsl:element name="disco:isMeasureOf">
+                <disco:isMeasureOf>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-universe-<xsl:value-of select="." /></xsl:attribute>
-                </xsl:element>
+                </disco:isMeasureOf>
             </xsl:for-each>
             
             <!-- disco:HasInstrument -->
-            <xsl:element name="disco:HasInstrument">
+            <disco:HasInstrument>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-instrument</xsl:attribute>
-            </xsl:element>
+            </disco:HasInstrument>
             
-            <!-- dc:hasPart -->
-            <xsl:element name="dc:hasPart">
+            <!-- dc:hasPart logicalDataset-->
+            <dc:hasPart>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-logicalDataSet</xsl:attribute>
-            </xsl:element>
+            </dc:hasPart>
             
             <!-- disco:HasDataFile -->
             <xsl:for-each select="//ddicb:codeBook/ddicb:fileDscr/ddicb:fileTxt">
@@ -186,9 +186,9 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     </xsl:template>
 
     <xsl:template match="ddicb:stdyInfo">
-        <dc:abstract>
+        <dcterms:abstract>
             <xsl:value-of select="ddicb:abstract" />
-        </dc:abstract>
+        </dcterms:abstract>
         <xsl:for-each select="ddicb:subject/ddicb:topcClas">
             <dcterms:subject>
                 <xsl:attribute name="xml:lang">
@@ -250,7 +250,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />-universe-<xsl:value-of select="." /></xsl:attribute>
             <!-- rdf:type -->
             <rdf:type>
-                <xsl:attribute name="rdf:resource">http://ddialliance.org/def#Universe</xsl:attribute>
+                <xsl:attribute name="rdf:resource">http://vocab.ddialliance.org/discovery#Universe</xsl:attribute>
             </rdf:type>
 
             <skos:definition>

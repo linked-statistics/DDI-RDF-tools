@@ -11,7 +11,7 @@
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" 
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:dcterms="http://purl.org/dc/terms/" 
-	xmlns:disco="http://vocab.ddialliance.org/discovery"
+	xmlns:disco="http://vocab.ddialliance.org/discovery#"
 	xmlns:ddi="http://ddialliance.org/data/" 
 	xmlns:ddicb="http://www.icpsr.umich.edu/DDI"
 	xmlns:qb="http://purl.org/linked-data/cube#">
@@ -38,7 +38,7 @@
 					<!-- ............... -->
 					<!-- type: -->
 						<xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<rdf:type rdf:resource="http://ddialliance.org/def#Instrument"/>]]></xsl:text>
+		<rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Instrument"/>]]></xsl:text>
 					<!-- ..... -->
 					
 					<!-- ............... -->
@@ -88,7 +88,7 @@
 			<!-- ............... -->
 			<!-- type -->
             <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<rdf:type rdf:resource="http://ddialliance.org/def#Question"/>]]></xsl:text>
+		<rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Question"/>]]></xsl:text>
             <!-- ..... -->
             <!-- ............... -->
 			<!-- literalText -->
@@ -344,7 +344,7 @@
         <!-- ............... -->
         <!-- type -->
         <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<rdf:type rdf:resource="http://ddialliance.org/def#LogicalDataSet"/>]]></xsl:text>
+		<rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#LogicalDataSet"/>]]></xsl:text>
         <!-- ..... -->
 				
         <!-- ............... -->

@@ -8,67 +8,58 @@
                 xmlns:skos="http://www.w3.org/2004/02/skos/core#" 
                 xmlns:dc="http://purl.org/dc/elements/1.1/"
                 xmlns:dcterms="http://purl.org/dc/terms/" 
-                xmlns:disco="http://vocab.ddialliance.org/discovery"
+                xmlns:disco="http://vocab.ddialliance.org/discovery#"
                 xmlns:ddi="http://ddialliance.org/data/" 
                 xmlns:ddicb="http://www.icpsr.umich.edu/DDI">
     <xsl:output method="xml" indent="yes"/>
 
     <!-- DataFile Template -->
     <xsl:template match="//ddicb:fileDscr/ddicb:fileTxt">
-
         <rdf:Description>
             <!-- URI -->
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$studyURI"/>-<xsl:value-of
-                    select="ddicb:fileName"/>
+                <xsl:value-of select="$studyURI"/>-<xsl:value-of select="ddicb:fileName"/>
             </xsl:attribute>
 
             <!-- rdf:type -->
-            <xsl:element name="rdf:type">
-                <xsl:attribute name="rdf:resource"
-                >http://ddialliance.org/def#DataFile</xsl:attribute>
-            </xsl:element>
+            <rdf:type>
+                <xsl:attribute name="rdf:resource">http://vocab.ddialliance.org/discovery#DataFile</xsl:attribute>
+            </rdf:type>
 
             <!-- disco:hasCoverage -->
-            <xsl:element name="disco:hasCoverage">
-                <xsl:attribute name="rdf:resource">coverage-<xsl:value-of select="$studyURI"
-                    />
-                </xsl:attribute>
-            </xsl:element>
+            <disco:hasCoverage>
+                <xsl:attribute name="rdf:resource">coverage-<xsl:value-of select="$studyURI"/></xsl:attribute>
+            </disco:hasCoverage>
 
             <!-- dc:identifier -->
             <xsl:if test="ddicb:fileName!=''">
-                <xsl:element name="dc:identifier">
-                    <xsl:value-of select="ddicb:fileName"/>
-                </xsl:element>
+                <dc:identifier><xsl:value-of select="ddicb:fileName"/></dc:identifier>
             </xsl:if>
 
             <!-- dc:description -->
             <xsl:if test="ddicb:fileCont!=''">
-                <xsl:element name="dc:description">
-                    <xsl:value-of select="ddicb:fileCont"/>
-                </xsl:element>
+                <dc:description><xsl:value-of select="ddicb:fileCont"/></dc:description>
             </xsl:if>
 
             <!-- disco:caseQuantity -->
             <xsl:for-each select="ddicb:dimensns/ddicb:caseQnty">
-                <xsl:element name="disco:caseQuantity">
+                <disco:caseQuantity>
                     <xsl:value-of select="."/>
-                </xsl:element>
+                </disco:caseQuantity>
             </xsl:for-each>
 
             <!-- dc:format -->
             <xsl:if test="ddicb:fileType!=''">
-                <xsl:element name="dc:format">
+                <dc:format>
                     <xsl:value-of select="ddicb:fileType"/>
-                </xsl:element>
+                </dc:format>
             </xsl:if>
 
             <!-- dc:provenance -->
             <xsl:if test="ddicb:filePlac!=''">
-                <xsl:element name="dc:provenance">
+                <dc:provenance>
                     <xsl:value-of select="ddicb:filePlac"/>
-                </xsl:element>
+                </dc:provenance>
             </xsl:if>
 
             <!-- owl:versionInfo -->
@@ -116,7 +107,7 @@
             <!-- rdf:type -->
             <xsl:element name="rdf:type">
                 <xsl:attribute name="rdf:resource"
-                >http://ddialliance.org/def#DescriptiveStatistics</xsl:attribute>
+                >http://vocab.ddialliance.org/discovery#DescriptiveStatistics</xsl:attribute>
             </xsl:element>
 
             <!-- disco:hasStatisticsValue -->
@@ -276,7 +267,7 @@
             
             <!-- rdf:type -->
             <xsl:element name="rdf:type">
-                <xsl:attribute name="rdf:resource">http://ddialliance.org/def#Variable</xsl:attribute>
+                <xsl:attribute name="rdf:resource">http://vocab.ddialliance.org/discovery#Variable</xsl:attribute>
             </xsl:element>
 
             <!-- disco:hasConcept -->

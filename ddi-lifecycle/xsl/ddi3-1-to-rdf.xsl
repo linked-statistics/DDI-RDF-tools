@@ -26,7 +26,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     xmlns:skos      = "http://www.w3.org/2004/02/skos/core#" 
     xmlns:dc        = "http://purl.org/dc/elements/1.1/"
     xmlns:dcterms   = "http://purl.org/dc/terms/" 
-    xmlns:disco   = "http://vocab.ddialliance.org/discovery"
+    xmlns:disco   = "http://vocab.ddialliance.org/discovery#"
     xmlns:ddi       = "http://ddialliance.org/data/" 
     xmlns:ddilc     = "ddi:instance:3_1"
     xmlns:g="ddi:group:3_1"
@@ -96,7 +96,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     <xsl:template match="s:StudyUnit">
         <rdf:Description>
             <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" /></xsl:attribute>
-            <rdf:type rdf:resource="http://ddialliance.org/def#Study" />
+            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Study" />
             
             <xsl:apply-templates select="r:Citation" />
             
@@ -163,7 +163,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:text>#universe-</xsl:text>
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://ddialliance.org/def#Universe" />
+            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Universe" />
             <xsl:for-each select="c:HumanReadable">
                 <skos:definition>
                     <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang"/></xsl:attribute>
@@ -180,7 +180,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:text>#coverage-</xsl:text>
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://ddialliance.org/def#Coverage" />            
+            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Coverage" />            
         </rdf:Description>
     </xsl:template>
 </xsl:stylesheet>
