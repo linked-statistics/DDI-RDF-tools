@@ -60,6 +60,8 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     
     <xsl:template match="/ddilc:DDIInstance">
         <rdf:RDF>
+            <!-- call the templates for all the elements -->
+            
             <!-- Study -->
             <xsl:apply-templates select="s:StudyUnit" />
 
@@ -112,11 +114,11 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             </xsl:for-each>
             
             <!-- disco:isMeasureOf -->
-            <xsl:for-each select="//c:Universe">
+            <xsl:for-each select="r:UniverseReference">
                 <disco:isMeasureOf>
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$studyURI"/>
-                        <xsl:text>#universe-</xsl:text><xsl:value-of select="@id"/>
+                        <xsl:text>#universe-</xsl:text><xsl:value-of select="r:ID"/>
                     </xsl:attribute>
                 </disco:isMeasureOf>
             </xsl:for-each>
