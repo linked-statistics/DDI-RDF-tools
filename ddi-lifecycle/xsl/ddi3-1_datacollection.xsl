@@ -15,7 +15,7 @@ Assigned : Olof Olsson
     xmlns:skos      = "http://www.w3.org/2004/02/skos/core#" 
     xmlns:dc        = "http://purl.org/dc/elements/1.1/"
     xmlns:dcterms   = "http://purl.org/dc/terms/" 
-    xmlns:ddionto   = "http://ddialliance.org/def#"
+    xmlns:disco   = "http://vocab.ddialliance.org/discovery"
     xmlns:ddi       = "http://ddialliance.org/data/" 
     xmlns:ddilc     = "ddi:instance:3_1"
     xmlns:g="ddi:group:3_1"
@@ -52,10 +52,10 @@ Assigned : Olof Olsson
             <rdf:type rdf:resource="http://ddialliance.org/def#Question"/>
             
             <xsl:for-each select="d:QuestionText">
-                <ddionto:literalText>
+                <disco:literalText>
                     <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang" /></xsl:attribute>
                     <xsl:value-of select="d:LiteralText/d:Text" />
-                </ddionto:literalText>                
+                </disco:literalText>                
             </xsl:for-each>
         </rdf:Description>
     </xsl:template>    

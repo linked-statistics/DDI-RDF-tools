@@ -22,7 +22,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     xmlns:skos      = "http://www.w3.org/2004/02/skos/core#" 
     xmlns:dc        = "http://purl.org/dc/elements/1.1/"
     xmlns:dcterms   = "http://purl.org/dc/terms/" 
-    xmlns:ddionto   = "http://ddialliance.org/def#"
+    xmlns:disco   = "http://vocab.ddialliance.org/discovery"
     xmlns:ddi       = "http://ddialliance.org/data/" 
     xmlns:ddicb     = "http://www.icpsr.umich.edu/DDI">
     
@@ -111,15 +111,15 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             </xsl:attribute>
             <rdf:type rdf:resource="http://ddialliance.org/def#Study" />
 
-            <!-- ddionto:isMeasureOf -->
+            <!-- disco:isMeasureOf -->
             <xsl:for-each select="ddicb:stdyInfo/ddicb:sumDscr/ddicb:universe">
-                <xsl:element name="ddionto:isMeasureOf">
+                <xsl:element name="disco:isMeasureOf">
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-universe-<xsl:value-of select="." /></xsl:attribute>
                 </xsl:element>
             </xsl:for-each>
             
-            <!-- ddionto:HasInstrument -->
-            <xsl:element name="ddionto:HasInstrument">
+            <!-- disco:HasInstrument -->
+            <xsl:element name="disco:HasInstrument">
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-instrument</xsl:attribute>
             </xsl:element>
             
@@ -128,17 +128,17 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-logicalDataSet</xsl:attribute>
             </xsl:element>
             
-            <!-- ddionto:HasDataFile -->
+            <!-- disco:HasDataFile -->
             <xsl:for-each select="//ddicb:codeBook/ddicb:fileDscr/ddicb:fileTxt">
-                <xsl:element name="ddionto:HasDataFile">
+                <xsl:element name="disco:HasDataFile">
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-<xsl:value-of select="./ddicb:fileName"/></xsl:attribute>
                 </xsl:element>
             </xsl:for-each>
       
             
-             <!-- ddionto:ContainsVariable -->
+             <!-- disco:ContainsVariable -->
             <xsl:for-each select="//ddicb:codeBook/ddicb:dataDscr/ddicb:var">
-                <xsl:element name="ddionto:ContainsVariable">
+                <xsl:element name="disco:ContainsVariable">
                     <xsl:attribute name="rdf:resource">
                         <xsl:choose>
                             <xsl:when test="./@name">
@@ -156,8 +156,8 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 </xsl:element>
             </xsl:for-each>                       
 
-            <!-- ddionto:HasCoverage -->
-            <xsl:element name="ddionto:HasCoverage">
+            <!-- disco:HasCoverage -->
+            <xsl:element name="disco:HasCoverage">
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$studyURI"/>-coverage</xsl:attribute>
             </xsl:element>
 
@@ -259,17 +259,17 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
         </rdf:Description>
     </xsl:template>
     <!--
-    <xsl:template match="ddicb:"> <ddionto:isMeasureOf> <xsl:value-of
-    select="ddicb:" /> </ddionto:isMeasureOf> </xsl:template>
+    <xsl:template match="ddicb:"> <disco:isMeasureOf> <xsl:value-of
+    select="ddicb:" /> </disco:isMeasureOf> </xsl:template>
 
-    <xsl:template match="ddicb:"> <ddionto:hasInstrument> <xsl:value-of
-    select="ddicb:" /> </ddionto:hasInstrument> </xsl:template>
+    <xsl:template match="ddicb:"> <disco:hasInstrument> <xsl:value-of
+    select="ddicb:" /> </disco:hasInstrument> </xsl:template>
 
-    <xsl:template match="ddicb:"> <ddionto:hasCoverage> <xsl:value-of
-    select="ddicb:" /> </ddionto:hasCoverage> </xsl:template>
+    <xsl:template match="ddicb:"> <disco:hasCoverage> <xsl:value-of
+    select="ddicb:" /> </disco:hasCoverage> </xsl:template>
 
-    <xsl:template match="ddicb:"> <ddionto:hasDatafile> <xsl:value-of
-    select="ddicb:" /> </ddionto:hasDatafile> </xsl:template>
+    <xsl:template match="ddicb:"> <disco:hasDatafile> <xsl:value-of
+    select="ddicb:" /> </disco:hasDatafile> </xsl:template>
     -->
 
     <xsl:template match="ddicb:concept" mode="reference">

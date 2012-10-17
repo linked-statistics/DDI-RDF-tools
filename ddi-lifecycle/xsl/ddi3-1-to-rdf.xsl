@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 Document : ddi3-1-to-rdf.xsl Description: converts a DDI 3.1 intance to RDF
-DDI Ontology draft: https://raw.github.com/FranckCo/DDIOnto/master/ddiontology.ttl
+DDI Ontology draft: https://raw.github.com/FranckCo/DDIOnto/master/discology.ttl
 
 to validate output:
 http://www.w3.org/RDF/Validator/
@@ -26,7 +26,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     xmlns:skos      = "http://www.w3.org/2004/02/skos/core#" 
     xmlns:dc        = "http://purl.org/dc/elements/1.1/"
     xmlns:dcterms   = "http://purl.org/dc/terms/" 
-    xmlns:ddionto   = "http://ddialliance.org/def#"
+    xmlns:disco   = "http://vocab.ddialliance.org/discovery"
     xmlns:ddi       = "http://ddialliance.org/data/" 
     xmlns:ddilc     = "ddi:instance:3_1"
     xmlns:g="ddi:group:3_1"
@@ -111,23 +111,23 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 </dcterms:abstract>
             </xsl:for-each>
             
-            <!-- ddionto:isMeasureOf -->
+            <!-- disco:isMeasureOf -->
             <xsl:for-each select="//c:Universe">
-                <ddionto:isMeasureOf>
+                <disco:isMeasureOf>
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$studyURI"/>
                         <xsl:text>#universe-</xsl:text><xsl:value-of select="@id"/>
                     </xsl:attribute>
-                </ddionto:isMeasureOf>
+                </disco:isMeasureOf>
             </xsl:for-each>
             
-            <!-- ddionto:HasInstrument -->
+            <!-- disco:HasInstrument -->
             <!-- dc:hasPart -->
-            <!-- ddionto:HasDataFile -->
+            <!-- disco:HasDataFile -->
             
-            <!-- ddionto:ContainsVariable -->
+            <!-- disco:ContainsVariable -->
             <xsl:for-each select="//l:Variable">
-                <xsl:element name="ddionto:ContainsVariable">
+                <xsl:element name="disco:ContainsVariable">
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$studyURI"/>
                         <xsl:text>variable-</xsl:text>
@@ -136,7 +136,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 </xsl:element>
             </xsl:for-each>
             
-            <!-- ddionto:HasCoverage -->
+            <!-- disco:HasCoverage -->
             
         </rdf:Description>
     </xsl:template>
@@ -148,8 +148,15 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:value-of select="." />
             </dc:title>
         </xsl:for-each>
+        <xsl:for-each select="r:Creator">
+            <dcterms:creator>
+                <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang"/></xsl:attribute>
+                <xsl:value-of select="."/>
+            </dcterms:creator>
+        </xsl:for-each>
     </xsl:template>
     
+    <!-- Universe -->
     <xsl:template match="c:Universe">
         <rdf:Description>
             <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />
@@ -166,6 +173,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
         </rdf:Description>
     </xsl:template>
     
+    <!-- Coverage -->
     <xsl:template match="r:Coverage">
         <rdf:Description>
             <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />

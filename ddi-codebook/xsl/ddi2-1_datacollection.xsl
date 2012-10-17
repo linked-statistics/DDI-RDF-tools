@@ -11,7 +11,7 @@
 	xmlns:skos="http://www.w3.org/2004/02/skos/core#" 
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:dcterms="http://purl.org/dc/terms/" 
-	xmlns:ddionto="http://ddialliance.org/def#"
+	xmlns:disco="http://vocab.ddialliance.org/discovery"
 	xmlns:ddi="http://ddialliance.org/data/" 
 	xmlns:ddicb="http://www.icpsr.umich.edu/DDI"
 	xmlns:qb="http://purl.org/linked-data/cube#">
@@ -45,14 +45,10 @@
 					<!-- usesQuestion: -->
 						<xsl:for-each select="//ddicb:qstn">
 							<xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:usesQuestion rdf:resource="]]></xsl:text>
+		<disco:usesQuestion rdf:resource="]]></xsl:text>
 							<xsl:choose>
-								<xsl:when test="../@ID">
-									question-<xsl:value-of select="../@ID"/>
-								</xsl:when>
-								<xsl:when test="./ddicb:qstnLit">
-									<xsl:value-of select="./ddicb:qstnLit/text()"/>
-								</xsl:when>
+								<xsl:when test="../@ID">question-<xsl:value-of select="../@ID"/></xsl:when>
+								<xsl:when test="./ddicb:qstnLit"><xsl:value-of select="./ddicb:qstnLit/text()"/></xsl:when>
 							</xsl:choose>
 							<xsl:text disable-output-escaping="yes"><![CDATA["/>]]></xsl:text>
 						</xsl:for-each>
@@ -98,15 +94,15 @@
 			<!-- literalText -->
 			<xsl:for-each select="./ddicb:qstnLit">
 				<xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:literalText>]]></xsl:text>
+		<disco:literalText>]]></xsl:text>
 				<xsl:value-of select="."/>
-				<xsl:text disable-output-escaping="yes"><![CDATA[</ddionto:literalText>]]></xsl:text>
+				<xsl:text disable-output-escaping="yes"><![CDATA[</disco:literalText>]]></xsl:text>
 			</xsl:for-each>
 			<!-- ..... -->
 			<!-- ............... -->
 			<!-- hasResponseDomain (→ Representation, skos:ConceptScheme): -->
 				<xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:hasResponseDomain rdf:resource="representation-]]></xsl:text>
+		<disco:hasResponseDomain rdf:resource="representation-]]></xsl:text>
 				<xsl:variable name="variableURI">
 					<xsl:choose>
 						<xsl:when test="../@name">
@@ -136,7 +132,7 @@
 			<!-- hasConcept (→ skos:Concept): -->
 				<xsl:for-each select="../ddicb:concept">
 					<xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:hasConcept rdf:resource="concept-]]></xsl:text>
+		<disco:hasConcept rdf:resource="concept-]]></xsl:text>
 					<xsl:choose>
 						<xsl:when test="./@ID">
 							<xsl:value-of select="./@ID"/>
@@ -367,7 +363,7 @@
         <!-- containsVariable (→ Variable): -->
         <xsl:for-each select="//ddicb:codeBook/ddicb:dataDscr/ddicb:var">
             <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:containsVariable rdf:resource="]]></xsl:text>
+		<disco:containsVariable rdf:resource="]]></xsl:text>
             <xsl:choose>
                 <xsl:when test="./@name">
                     <xsl:value-of select="$studyURI"/>
@@ -388,7 +384,7 @@
         <!-- hasDataFile (→ DataFile): -->
         <xsl:for-each select="//ddicb:codeBook/ddicb:fileDscr/ddicb:fileTxt">
             <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:hasDataFile rdf:resource="]]></xsl:text>
+		<disco:hasDataFile rdf:resource="]]></xsl:text>
             <xsl:value-of select="$studyURI"/>
             <xsl:text>-</xsl:text>
             <xsl:value-of select="./ddicb:fileName"/>
@@ -399,7 +395,7 @@
         <!-- ............... -->
         <!-- hasCoverage (→ Coverage): -->
         <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:hasCoverage rdf:resource="]]></xsl:text>
+		<disco:hasCoverage rdf:resource="]]></xsl:text>
         <xsl:text>coverage-</xsl:text>
         <xsl:value-of select="$studyURI"/>
         <xsl:text disable-output-escaping="yes"><![CDATA["/>]]></xsl:text>
@@ -408,7 +404,7 @@
         <!-- ............... -->
         <!-- hasInstrument (→ Instrument): -->
         <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:hasInstrument rdf:resource="]]></xsl:text>
+		<disco:hasInstrument rdf:resource="]]></xsl:text>
         <xsl:text>instrument-</xsl:text>
         <xsl:value-of select="$studyURI"/>
         <xsl:text disable-output-escaping="yes"><![CDATA["/>]]></xsl:text>
@@ -418,7 +414,7 @@
         <!-- isMeasureOf (→ Universe): -->
         <xsl:for-each select="//ddicb:codeBook/ddicb:stdyDscr/ddicb:stdyInfo/ddicb:sumDscr/ddicb:universe">
             <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<ddionto:isMeasureOf rdf:resource="]]></xsl:text>
+		<disco:isMeasureOf rdf:resource="]]></xsl:text>
             <xsl:value-of select="."/>
             <xsl:text disable-output-escaping="yes"><![CDATA["/>]]></xsl:text>
         </xsl:for-each>
