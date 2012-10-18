@@ -40,4 +40,15 @@ Assigned : Thomas Bosch
     <xsl:strip-space elements="*"/>
 
     
+    <xsl:template match="l:Variable">
+         <rdf:Description>
+            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />
+                <xsl:text>#variable-</xsl:text>
+                <xsl:value-of select="@id"/>
+            </xsl:attribute>
+            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Variable" />
+
+        </rdf:Description>   
+    </xsl:template>
+    
 </xsl:stylesheet>

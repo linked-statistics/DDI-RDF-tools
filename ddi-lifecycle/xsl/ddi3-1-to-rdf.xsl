@@ -75,7 +75,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             
 
             <!-- Variables -->
-            
+            <xsl:apply-templates select="//l:Variable" />
         
             <!-- Intrument -->
             
@@ -132,7 +132,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:element name="disco:ContainsVariable">
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$studyURI"/>
-                        <xsl:text>variable-</xsl:text>
+                        <xsl:text>#variable-</xsl:text>
                         <xsl:value-of select="./@id"/>                        
                     </xsl:attribute>
                 </xsl:element>

@@ -8,10 +8,10 @@
             <r:Content xml:lang="en">abstract-study1</r:Content>
         </s:Abstract>
         <r:UniverseReference>
-            <r:ID>universe1-id</r:ID>
+            <r:ID>universe1</r:ID>
         </r:UniverseReference>
         <r:UniverseReference>
-            <r:ID>universe2-id</r:ID>
+            <r:ID>universe2</r:ID>
         </r:UniverseReference>
         <s:Purpose id="">
             <r:Content></r:Content>
@@ -19,12 +19,12 @@
 
         <r:Coverage>
             <r:TopicalCoverage id="topicalCoverage42">
-                <r:Subject codeListID="vocab">subject1</r:Subject>
-                <r:Subject codeListID="vocab">subject2</r:Subject>
-                <r:Subject codeListID="vocab">subject3</r:Subject>                
-                <r:Keyword codeListID="vocab">keyword1</r:Keyword>
-                <r:Keyword codeListID="vocab">keyword2</r:Keyword>  
-                <r:Keyword codeListID="vocab">keyword3</r:Keyword>
+                <r:Subject codeListID="vocab1">subject1</r:Subject>
+                <r:Subject codeListID="vocab1">subject2</r:Subject>
+                <r:Subject codeListID="vocab1">subject3</r:Subject>                
+                <r:Keyword codeListID="vocab2">keyword1</r:Keyword>
+                <r:Keyword codeListID="vocab2">keyword2</r:Keyword>  
+                <r:Keyword codeListID="vocab2">keyword3</r:Keyword>
             </r:TopicalCoverage>
         </r:Coverage>
         <c:ConceptualComponent id="conceptualcomponent-1">
