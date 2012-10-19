@@ -2,6 +2,8 @@ Tools, vocabularies and other stuff for an RDF representation of DDI
 
 ## Mapping DDI to RDF Schema
 
+The ontology is described on: https://github.com/linked-statistics/disco-spec
+
 The plan is the following:
 
 ### Conceptual mapping from DDI XML to RDF Schema
