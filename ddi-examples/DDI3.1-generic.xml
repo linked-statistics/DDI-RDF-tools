@@ -13,11 +13,9 @@
         <r:UniverseReference>
             <r:ID>universe2</r:ID>
         </r:UniverseReference>
-        <s:Purpose id="">
-            <r:Content></r:Content>
+        <s:Purpose id="p1">
+            <r:Content>purpose</r:Content>
         </s:Purpose>
-        <s:KindOfData>Survey data</s:KindOfData>
-        <r:AnalysisUnit>Individual</r:AnalysisUnit>
         <r:Coverage>
             <r:TopicalCoverage id="topicalCoverage42">
                 <r:Subject codeListID="vocab1">subject1</r:Subject>
@@ -28,6 +26,8 @@
                 <r:Keyword codeListID="vocab2">keyword3</r:Keyword>
             </r:TopicalCoverage>
         </r:Coverage>
+        <r:AnalysisUnit>Individual</r:AnalysisUnit>
+        <s:KindOfData>Survey data</s:KindOfData>        
         <c:ConceptualComponent id="conceptualcomponent-1">
             <c:UniverseScheme id="universesceme-1">
                 <c:Universe id="universe1">
@@ -39,7 +39,7 @@
             </c:UniverseScheme>
         </c:ConceptualComponent>
         
-        <d:DataCollection id="">
+        <d:DataCollection id="dc1">
             <d:QuestionScheme id="">
                 <d:QuestionItem id="qstn1">
                     <d:QuestionText>
@@ -59,7 +59,7 @@
                 </d:QuestionItem>                
             </d:QuestionScheme>
         </d:DataCollection>
-        <l:LogicalProduct id="">
+        <l:LogicalProduct id="lp1">
             <l:CategoryScheme id="cat-scehme-1">
                 <l:Category id="cat-1">
                     <r:Label xml:lang="en">one</r:Label>
@@ -69,7 +69,7 @@
             <l:CodeScheme id="codescheme-1">
                 
             </l:CodeScheme>
-            <l:VariableScheme id="">
+            <l:VariableScheme id="vs1">
                 <l:Variable id="var1">
                     <l:VariableName isPreferred="true" xml:lang="en" translatable="true" translated="true">Age</l:VariableName>
                     <r:Label>var1</r:Label>
