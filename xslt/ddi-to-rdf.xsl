@@ -30,5 +30,14 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 xmlns:ddi       = "http://ddialliance.org/data/" 
                 xmlns:ddilc     = "ddi:instance:3_1"
                 xmlns:ddicb     = "http://www.icpsr.umich.edu/DDI">
+    <xsl:import href="ddi-lifecycle/ddi3-1-to-rdf.xsl"/>
+    <xsl:import href="ddi-codebook/ddi2-1-to-rdf.xsl"/>
     
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
+    
+    <xsl:template match="/">
+        <xsl:apply-templates select="ddilc:DDIInstance" />
+        <xsl:apply-imports select="ddicb:codeBook" />
+    </xsl:template>
 </xsl:stylesheet>
