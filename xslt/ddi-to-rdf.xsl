@@ -36,6 +36,8 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
+    <xsl:variable name="discoURI">http://rdf-vocabulary.ddialliance.org/discovery#</xsl:variable>
+    
     <xsl:template match="/">
         <xsl:apply-templates select="ddilc:DDIInstance" />
         <xsl:apply-imports select="ddicb:codeBook" />

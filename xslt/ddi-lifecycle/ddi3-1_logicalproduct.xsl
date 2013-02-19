@@ -46,7 +46,9 @@ Assigned : Thomas Bosch
                 <xsl:text>#variable-</xsl:text>
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Variable" />
+            <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Variable</xsl:attribute>
+            </rdf:type>            
 
         </rdf:Description>   
     </xsl:template>

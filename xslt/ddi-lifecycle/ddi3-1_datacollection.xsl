@@ -49,7 +49,9 @@ Assigned : Olof Olsson
             <xsl:attribute name="rdf:about">
                 <xsl:value-of select="$studyURI" /><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />
             </xsl:attribute>            
-            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Question"/>
+            <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Question</xsl:attribute>
+            </rdf:type>
             
             <xsl:for-each select="d:QuestionText">
                 <disco:literalText>
@@ -59,6 +61,4 @@ Assigned : Olof Olsson
             </xsl:for-each>
         </rdf:Description>
     </xsl:template>    
-    
-
 </xsl:stylesheet>
