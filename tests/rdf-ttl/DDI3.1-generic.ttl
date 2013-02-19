@@ -1,0 +1,35 @@
+@prefix dc:      <http://purl.org/dc/elements/1.1/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix disco:   <http://rdf-vocabulary.ddialliance.org/discovery#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ddi:     <http://ddialliance.org/data/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix si:      <http://www.w3schools.com/rdf/> .
+@prefix dcterms:  <http://purl.org/dc/terms/> .
+
+<http://my.prefix.com/study/42>
+      a       disco:Study ;
+      dc:identifier "study1" ;
+      dc:title "title-study1"@en ;
+      dcterms:abstract "abstract-study1"@en ;
+      disco:ContainsVariable
+              <http://my.prefix.com/study/42#variable-var1> ;
+      disco:isMeasureOf <http://my.prefix.com/study/42#universe-universe2> , <http://my.prefix.com/study/42#universe-universe1> .
+
+<http://my.prefix.com/study/42#variable-var1>
+      a       disco:Variable .
+
+<http://my.prefix.com/study/42#universe-universe2>
+      a       disco:Universe .
+
+<http://my.prefix.com/study/42#question-qstn2>
+      a       disco:Question ;
+      disco:literalText "qstn2-var2?" .
+
+<http://my.prefix.com/study/42#universe-universe1>
+      a       disco:Universe .
+
+<http://my.prefix.com/study/42#question-qstn1>
+      a       disco:Question ;
+      disco:literalText "qstn1-var1?" .

@@ -100,7 +100,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <xsl:attribute name="rdf:about">
                 <xsl:value-of select="$studyURI" />
             </xsl:attribute>
-            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Study" />
+            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Study" />
             
             <xsl:apply-templates select="r:Citation" />
             
@@ -177,7 +177,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:text>#universe-</xsl:text>
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Universe" />
+            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Universe" />
             <xsl:for-each select="c:HumanReadable">
                 <skos:definition>
                     <xsl:attribute name="xml:lang">
@@ -197,7 +197,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:text>#coverage-</xsl:text>
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Coverage" />            
+            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Coverage" />            
         </rdf:Description>
     </xsl:template>
 </xsl:stylesheet>

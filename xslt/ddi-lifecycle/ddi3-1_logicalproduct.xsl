@@ -46,7 +46,7 @@ Assigned : Thomas Bosch
                 <xsl:text>#variable-</xsl:text>
                 <xsl:value-of select="@id"/>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Variable" />
+            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Variable" />
 
         </rdf:Description>   
     </xsl:template>

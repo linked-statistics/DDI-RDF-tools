@@ -27,7 +27,7 @@
 
             <!-- rdf:type -->
             <rdf:type>
-                <xsl:attribute name="rdf:resource">http://vocab.ddialliance.org/discovery#DataFile</xsl:attribute>
+                <xsl:attribute name="rdf:resource">http://rdf-vocabulary.ddialliance.org/discovery#DataFile</xsl:attribute>
             </rdf:type>
 
             <!-- disco:hasCoverage -->
@@ -111,7 +111,7 @@
             <!-- rdf:type -->
             <xsl:element name="rdf:type">
                 <xsl:attribute name="rdf:resource"
-                >http://vocab.ddialliance.org/discovery#DescriptiveStatistics</xsl:attribute>
+                >http://rdf-vocabulary.ddialliance.org/discovery#DescriptiveStatistics</xsl:attribute>
             </xsl:element>
 
             <!-- disco:hasStatisticsValue -->
@@ -271,7 +271,7 @@
             
             <!-- rdf:type -->
             <xsl:element name="rdf:type">
-                <xsl:attribute name="rdf:resource">http://vocab.ddialliance.org/discovery#Variable</xsl:attribute>
+                <xsl:attribute name="rdf:resource">http://rdf-vocabulary.ddialliance.org/discovery#Variable</xsl:attribute>
             </xsl:element>
 
             <!-- disco:hasConcept -->

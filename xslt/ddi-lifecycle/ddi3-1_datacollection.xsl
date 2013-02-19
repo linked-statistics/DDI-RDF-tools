@@ -49,7 +49,7 @@ Assigned : Olof Olsson
             <xsl:attribute name="rdf:about">
                 <xsl:value-of select="$studyURI" /><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />
             </xsl:attribute>            
-            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Question"/>
+            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Question"/>
             
             <xsl:for-each select="d:QuestionText">
                 <disco:literalText>

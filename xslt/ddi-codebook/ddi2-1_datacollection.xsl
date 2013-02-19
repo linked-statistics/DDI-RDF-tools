@@ -38,7 +38,7 @@
 					<!-- ............... -->
 					<!-- type: -->
 						<xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Instrument"/>]]></xsl:text>
+		<rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Instrument"/>]]></xsl:text>
 					<!-- ..... -->
 					
 					<!-- ............... -->
@@ -88,7 +88,7 @@
 			<!-- ............... -->
 			<!-- type -->
             <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Question"/>]]></xsl:text>
+		<rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Question"/>]]></xsl:text>
             <!-- ..... -->
             <!-- ............... -->
 			<!-- literalText -->
@@ -344,7 +344,7 @@
         <!-- ............... -->
         <!-- type -->
         <xsl:text disable-output-escaping="yes"><![CDATA[ 
-		<rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#LogicalDataSet"/>]]></xsl:text>
+		<rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#LogicalDataSet"/>]]></xsl:text>
         <!-- ..... -->
 				
         <!-- ............... -->

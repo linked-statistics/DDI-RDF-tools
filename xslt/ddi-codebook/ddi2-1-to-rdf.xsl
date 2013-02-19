@@ -109,7 +109,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                     <xsl:otherwise><xsl:value-of select="../ID" /></xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <rdf:type rdf:resource="http://vocab.ddialliance.org/discovery#Study" />
+            <rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Study" />
 
             <!-- disco:isMeasureOf -->
             <xsl:for-each select="ddicb:stdyInfo/ddicb:sumDscr/ddicb:universe">
@@ -250,7 +250,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />-universe-<xsl:value-of select="." /></xsl:attribute>
             <!-- rdf:type -->
             <rdf:type>
-                <xsl:attribute name="rdf:resource">http://vocab.ddialliance.org/discovery#Universe</xsl:attribute>
+                <xsl:attribute name="rdf:resource">http://rdf-vocabulary.ddialliance.org/discovery#Universe</xsl:attribute>
             </rdf:type>
 
             <skos:definition>
