@@ -11,7 +11,7 @@
 	xmlns:skos      = "http://www.w3.org/2004/02/skos/core#" 
 	xmlns:dc        = "http://purl.org/dc/elements/1.1/"
 	xmlns:dcterms   = "http://purl.org/dc/terms/" 
-	xmlns:disco     = "http://rdf-vocabulary.ddialliance.org/discovery# "
+	xmlns:disco     = "http://rdf-vocabulary.ddialliance.org/discovery#"
 	xmlns:ddi       = "http://ddialliance.org/data/" 
 	xmlns:ddicb     = "http://www.icpsr.umich.edu/DDI"
 	xmlns:qb        = "http://purl.org/linked-data/cube#">

@@ -26,7 +26,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 xmlns:skos      = "http://www.w3.org/2004/02/skos/core#" 
                 xmlns:dc        = "http://purl.org/dc/elements/1.1/"
                 xmlns:dcterms   = "http://purl.org/dc/terms/" 
-                xmlns:disco     = "http://rdf-vocabulary.ddialliance.org/discovery# "
+                xmlns:disco     = "http://rdf-vocabulary.ddialliance.org/discovery#"
                 xmlns:ddi       = "http://ddialliance.org/data/" 
                 xmlns:ddilc     = "ddi:instance:3_1"
                 xmlns:g         = "ddi:group:3_1"
