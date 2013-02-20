@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ns1:DDIInstance xmlns:ns1="ddi:instance:3_1" xmlns:a="ddi:archive:3_1" xmlns:c="ddi:conceptualcomponent:3_1" xmlns:cm="ddi:comparative:3_1" xmlns:d="ddi:datacollection:3_1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dce="ddi:dcelements:3_1" xmlns:ds="ddi:dataset:3_1" xmlns:g="ddi:group:3_1" xmlns:l="ddi:logicalproduct:3_1" xmlns:m1="ddi:physicaldataproduct/ncube/normal:3_1" xmlns:m2="ddi:physicaldataproduct/ncube/tabular:3_1" xmlns:m3="ddi:physicaldataproduct/ncube/inline:3_1" xmlns:o="ddi:organizations:3_1" xmlns:pd="ddi:physicaldataproduct:3_1" xmlns:pi="ddi:physicalinstance:3_1" xmlns:pr="ddi:profile:3_1" xmlns:r="ddi:reusable:3_1" xmlns:s="ddi:studyunit:3_1" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="" xsi:schemaLocation="ddi:instance:3_1 http://www.ddialliance.org/Specification/DDI-Lifecycle/3.1/XMLSchema/instance.xsd">
+<ns1:DDIInstance 
+    xmlns:ns1="ddi:instance:3_1" 
+    xmlns:a="ddi:archive:3_1" 
+    xmlns:c="ddi:conceptualcomponent:3_1" 
+    xmlns:cm="ddi:comparative:3_1" 
+    xmlns:d="ddi:datacollection:3_1" 
+    xmlns:dc="http://purl.org/dc/elements/1.1/" 
+    xmlns:dce="ddi:dcelements:3_1" 
+    xmlns:ds="ddi:dataset:3_1" 
+    xmlns:g="ddi:group:3_1" 
+    xmlns:l="ddi:logicalproduct:3_1" 
+    xmlns:m1="ddi:physicaldataproduct/ncube/normal:3_1" 
+    xmlns:m2="ddi:physicaldataproduct/ncube/tabular:3_1" 
+    xmlns:m3="ddi:physicaldataproduct/ncube/inline:3_1" 
+    xmlns:o="ddi:organizations:3_1" 
+    xmlns:pd="ddi:physicaldataproduct:3_1" 
+    xmlns:pi="ddi:physicalinstance:3_1" 
+    xmlns:pr="ddi:profile:3_1" 
+    xmlns:r="ddi:reusable:3_1" 
+    xmlns:s="ddi:studyunit:3_1" 
+    xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    id="ddii1" 
+    xsi:schemaLocation="ddi:instance:3_1 http://www.ddialliance.org/Specification/DDI-Lifecycle/3.1/XMLSchema/instance.xsd">
     <s:StudyUnit id="study1">
         <r:Citation>
             <r:Title xml:lang="en">title-study1</r:Title>
@@ -40,7 +63,7 @@
         </c:ConceptualComponent>
         
         <d:DataCollection id="dc1">
-            <d:QuestionScheme id="">
+            <d:QuestionScheme id="qscheme1">
                 <d:QuestionItem id="qstn1">
                     <d:QuestionText>
                         <d:LiteralText>
@@ -58,6 +81,24 @@
                     <d:TextDomain/>
                 </d:QuestionItem>                
             </d:QuestionScheme>
+            <d:ControlConstructScheme id="cc1">
+                <d:QuestionConstruct id="qc1">
+                    <d:QuestionReference>
+                        <r:ID>qstn1</r:ID>
+                    </d:QuestionReference>
+                </d:QuestionConstruct>
+                <d:QuestionConstruct id="qc2">
+                    <d:QuestionReference>
+                        <r:ID>qstn2</r:ID>
+                    </d:QuestionReference>
+                </d:QuestionConstruct>                
+            </d:ControlConstructScheme>            
+            <d:Instrument id="inst1">
+                <r:Description>Insturment description</r:Description>
+                <d:ControlConstructReference>
+                    <r:ID>cc1</r:ID>
+                </d:ControlConstructReference>
+            </d:Instrument>            
         </d:DataCollection>
         <l:LogicalProduct id="lp1">
             <l:CategoryScheme id="cat-scehme-1">
