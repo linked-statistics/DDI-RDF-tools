@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Document : ddi-to-rdf.xsl Description: converts a DDI intance to RDF
+Document : ddi-to-rdf.xsl Description: converts a DDI-codebook/lifecycle intance to RDF-XML
 DDI Ontology draft: https://raw.github.com/linked-statistics/disco-spec/master/discovery.ttl
 
 to validate output:
