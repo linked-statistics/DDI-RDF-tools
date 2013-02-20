@@ -41,6 +41,20 @@ Assigned : Thomas Bosch
 
     
     <xsl:template match="l:Variable">
+        <!--
+            Implementation, use "-" for marking when it´s done
+            -dcterms:description		
+            -dcterms:identifier		
+            -skos:prefLabel		
+            -skos:notation		
+            disco:question		disco:Question
+            disco:representation	union of (skos:ConceptScheme rdfs:Datatype)
+            disco:basedOn		disco:VariableDefinition
+            disco:concept		skos:Concept
+            disco:analysisUnit		disco:AnalysisUnit
+            disco:universe		disco:Universe
+        -->
+        
          <rdf:Description>
             <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />
                 <xsl:text>#variable-</xsl:text>
@@ -49,6 +63,30 @@ Assigned : Thomas Bosch
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Variable</xsl:attribute>
             </rdf:type>            
+
+            <xsl:if test="r:Description">
+                <dcterms:description>
+                    <xsl:value-of select="r:Description" />
+                </dcterms:description>                            
+            </xsl:if>
+                                    
+            <xsl:if test="l:VariableName">
+                <dcterms:identifier>
+                    <xsl:value-of select="l:VariableName" />
+                </dcterms:identifier>
+            </xsl:if>
+            
+            <xsl:if test="r:Label">
+                <skos:prefLabel>
+                    <xsl:value-of select="r:Label" />
+                </skos:prefLabel>
+            </xsl:if>
+            
+            <xsl:if test="l:VariableName">
+                <skos:notation>
+                    <xsl:value-of select="l:VariableName" />
+                </skos:notation>
+            </xsl:if>
 
         </rdf:Description>   
     </xsl:template>
