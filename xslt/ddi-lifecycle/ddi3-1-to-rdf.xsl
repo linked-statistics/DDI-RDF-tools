@@ -190,14 +190,6 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:value-of select="." />
             </disco:subtitle>
         </xsl:for-each>        
-        <xsl:for-each select="r:Creator">
-            <dcterms:creator>
-                <xsl:attribute name="xml:lang">
-                    <xsl:value-of select="@xml:lang"/>
-                </xsl:attribute>
-                <xsl:value-of select="."/>
-            </dcterms:creator>
-        </xsl:for-each>
     </xsl:template>
     
     <!-- Universe -->

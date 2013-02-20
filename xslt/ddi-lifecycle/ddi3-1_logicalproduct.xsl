@@ -47,7 +47,7 @@ Assigned : Thomas Bosch
             -dcterms:identifier		
             -skos:prefLabel		
             -skos:notation		
-            disco:question		disco:Question
+            -disco:question		disco:Question
             disco:representation	union of (skos:ConceptScheme rdfs:Datatype)
             disco:basedOn		disco:VariableDefinition
             disco:concept		skos:Concept
@@ -87,6 +87,29 @@ Assigned : Thomas Bosch
                     <xsl:value-of select="l:VariableName" />
                 </skos:notation>
             </xsl:if>
+
+
+            <!-- disco:question -->
+            <xsl:for-each select="r:QuestionReference">
+                <disco:question>
+                    <xsl:attribute name="rdf:resource">
+                        <xsl:value-of select="$studyURI"/>
+                        <xsl:text>#question-</xsl:text>
+                        <xsl:value-of select="r:ID"/>
+                    </xsl:attribute>
+                </disco:question>
+            </xsl:for-each>
+
+            <!-- disco:universe -->
+            <xsl:for-each select="r:UniverseReference">
+                <disco:universe>
+                    <xsl:attribute name="rdf:resource">
+                        <xsl:value-of select="$studyURI"/>
+                        <xsl:text>#universe-</xsl:text>
+                        <xsl:value-of select="r:ID"/>
+                    </xsl:attribute>
+                </disco:universe>
+            </xsl:for-each>
 
         </rdf:Description>   
     </xsl:template>
