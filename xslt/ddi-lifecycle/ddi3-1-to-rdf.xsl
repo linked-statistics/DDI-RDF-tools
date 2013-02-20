@@ -57,6 +57,8 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     <!-- used as a prefix for elements -->
     <xsl:param name="studyURI">http://some.uri.to.my.data.defined.as.a.param/<xsl:value-of select="/ddilc:DDIInstance/s:StudyUnit/@id"/></xsl:param>
     
+    <!-- this param is set to true if data is publicaly accessible -->
+    <xsl:param name="isPublic">false</xsl:param>
     
     <xsl:template match="/ddilc:DDIInstance">
         <rdf:RDF>
@@ -104,7 +106,6 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Study</xsl:attribute>
             </rdf:type>
-            <!--<rdf:type rdf:resource="http://rdf-vocabulary.ddialliance.org/discovery#Study" />-->
             
             <xsl:apply-templates select="r:Citation" />
             
@@ -122,7 +123,17 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                     <xsl:value-of select="r:Content"/>
                 </dcterms:abstract>
             </xsl:for-each>
-            
+
+            <!-- purpose -->
+            <xsl:for-each select="s:Purpose">
+                <disco:purpose>
+                    <xsl:attribute name="xml:lang">
+                        <xsl:value-of select="r:Content/@xml:lang" />
+                    </xsl:attribute>
+                    <xsl:value-of select="r:Content"/>
+                </disco:purpose>
+            </xsl:for-each>            
+                                    
             <!-- disco:isMeasureOf -->
             <xsl:for-each select="r:UniverseReference">
                 <disco:isMeasureOf>
@@ -138,15 +149,15 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <!-- dc:hasPart -->
             <!-- disco:HasDataFile -->
             
-            <!-- disco:ContainsVariable -->
+            <!-- disco:variable -->
             <xsl:for-each select="//l:Variable">
-                <xsl:element name="disco:ContainsVariable">
+                <disco:variable>
                     <xsl:attribute name="rdf:resource">
                         <xsl:value-of select="$studyURI"/>
                         <xsl:text>#variable-</xsl:text>
                         <xsl:value-of select="./@id"/>                        
                     </xsl:attribute>
-                </xsl:element>
+                </disco:variable>
             </xsl:for-each>
             
             <!-- disco:HasCoverage -->
@@ -156,13 +167,29 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
 
     <xsl:template match="r:Citation">
         <xsl:for-each select="r:Title">
-            <dc:title>
+            <dcterms:title>
                 <xsl:attribute name="xml:lang">
                     <xsl:value-of select="@xml:lang"/>
                 </xsl:attribute>
                 <xsl:value-of select="." />
-            </dc:title>
+            </dcterms:title>
         </xsl:for-each>
+        <xsl:for-each select="r:AlternativeTitle">
+            <dcterms:alternative>
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="@xml:lang"/>
+                </xsl:attribute>
+                <xsl:value-of select="." />
+            </dcterms:alternative>
+        </xsl:for-each>        
+        <xsl:for-each select="r:SubTitle">
+            <disco:subtitle>
+                <xsl:attribute name="xml:lang">
+                    <xsl:value-of select="@xml:lang"/>
+                </xsl:attribute>
+                <xsl:value-of select="." />
+            </disco:subtitle>
+        </xsl:for-each>        
         <xsl:for-each select="r:Creator">
             <dcterms:creator>
                 <xsl:attribute name="xml:lang">

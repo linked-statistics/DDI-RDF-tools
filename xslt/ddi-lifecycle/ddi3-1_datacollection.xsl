@@ -41,7 +41,16 @@ Assigned : Olof Olsson
     
     
     <!-- Intrument -->
-
+    <xsl:template match="d:Instrument">
+        <rdf:Desciption>
+            <xsl:attribute name="rdf:about">
+                <xsl:value-of select="$studyURI" /><xsl:text>#instrument-</xsl:text><xsl:value-of select="@id" />
+            </xsl:attribute>
+            <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Intrument</xsl:attribute>
+            </rdf:type>            
+        </rdf:Desciption>
+    </xsl:template>
 
     <!--Question -->
     <xsl:template match="d:QuestionItem|d:MultipleQuestionItem">
@@ -53,6 +62,17 @@ Assigned : Olof Olsson
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Question</xsl:attribute>
             </rdf:type>
             
+            <!-- QuestionItemName -->
+            <xsl:for-each select="d:QuestionItemName|d:MultipleQuestionItemName">
+                <skos:prefLabel>
+                    <xsl:attribute name="xml:lang">
+                        <xsl:value-of select="@xml:lang" />
+                    </xsl:attribute>
+                    <xsl:value-of select="." />
+                </skos:prefLabel>
+            </xsl:for-each>
+            
+            <!-- QuestionText -->
             <xsl:for-each select="d:QuestionText">
                 <disco:literalText>
                     <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang" /></xsl:attribute>
