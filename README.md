@@ -53,3 +53,6 @@ The workshop was organized by:
 * Arofan Gregory (Open Data Foundation - Tucson, US)
 * Wendy Thomas (Population Center, University of Minnesota, US)
 * Joachim Wackerow (GESIS - Leibniz Institute for the Social Sciences, DE)
+
+## License
+The DDI-RDF DDI-RDF-tools is licensed under a Creative Commons Attribution 3.0 License.
