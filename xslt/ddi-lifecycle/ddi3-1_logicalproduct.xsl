@@ -152,6 +152,14 @@ Assigned : Thomas Bosch
                     <xsl:value-of select="." />
                 </skos:prefLabel>
             </xsl:for-each>
+            <xsl:variable name="categoryID" select="@id" />
+            <xsl:for-each select="//l:CodeScheme[l:Code/l:CategoryReference/r:ID =$categoryID]">
+                <skos:inScheme>
+                    <xsl:attribute name="rdf:about">
+                        <xsl:call-template name="createUriByElement"/>
+                    </xsl:attribute>                          
+                </skos:inScheme>
+            </xsl:for-each>
         </rdf:Description>
     </xsl:template>
     
