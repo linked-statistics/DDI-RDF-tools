@@ -49,8 +49,8 @@ Assigned : Olof Olsson
     <xsl:template match="d:Instrument">
         <rdf:Desciption>
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$studyURI" /><xsl:text>#instrument-</xsl:text><xsl:value-of select="@id" />
-            </xsl:attribute>
+                <xsl:call-template name="createUriByElement"/>
+            </xsl:attribute>    
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Intrument</xsl:attribute>
             </rdf:type>            
@@ -61,8 +61,8 @@ Assigned : Olof Olsson
     <xsl:template match="d:QuestionItem|d:MultipleQuestionItem">
         <rdf:Description>
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$studyURI" /><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />
-            </xsl:attribute>            
+                <xsl:call-template name="createUriByElement"/>
+            </xsl:attribute>        
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Question</xsl:attribute>
             </rdf:type>
@@ -86,6 +86,21 @@ Assigned : Olof Olsson
                     <xsl:value-of select="d:LiteralText/d:Text" />
                 </disco:literalText>                
             </xsl:for-each>
+            
+            <!-- hasConcept -->
+            <xsl:if test="d:CodeDomain">
+                
+                <xsl:variable name="categorySchemeID" select="r:CategorySchemeReferenc/r:ID"/>
+                
+                <xsl:for-each select="//l:CategoryScheme[@id = $categorySchemeID]/l:Category">
+                    <disco:hasConcept>
+                        <xsl:attribute name="rdf:resurce">
+                            <xsl:call-template name="createUriByElement" />
+                        </xsl:attribute>                        
+                    </disco:hasConcept>                
+                </xsl:for-each>
+            </xsl:if>
+
         </rdf:Description>
-    </xsl:template>    
+    </xsl:template>  
 </xsl:stylesheet>

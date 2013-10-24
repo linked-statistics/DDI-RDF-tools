@@ -7,8 +7,8 @@ Req the lxml module
 
 import lxml.etree as LET
 
-tree = LET.parse('dditofo.xsl')
+tree = LET.parse('ddi-to-rdf.xsl')
 tree.xinclude()  # perform xincludes
 
 # directly write tree to file
-tree.write('dditofo_complete.xsl', xml_declaration=True, encoding='UTF-8')
+tree.write('ddi-to-rdf-complete.xsl', xml_declaration=True, encoding='UTF-8')
