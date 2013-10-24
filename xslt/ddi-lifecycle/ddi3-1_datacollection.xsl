@@ -78,20 +78,29 @@ Assigned : Olof Olsson
                 </disco:literalText>                
             </xsl:for-each>
             
-            <!-- hasConcept -->
-            <xsl:if test="d:CodeDomain">
-                
-                <xsl:variable name="categorySchemeID" select="r:CategorySchemeReferenc/r:ID"/>
-                
-                <xsl:for-each select="//l:CategoryScheme[@id = $categorySchemeID]/l:Category">
-                    <disco:hasConcept>
-                        <xsl:attribute name="rdf:resurce">
-                            <xsl:call-template name="createUriByElement" />
-                        </xsl:attribute>                        
-                    </disco:hasConcept>                
-                </xsl:for-each>
-            </xsl:if>
+            <xsl:apply-templates select="d:CodeDomain" />
 
         </rdf:Description>
     </xsl:template>  
+    
+    <xsl:template match="d:CodeDomain">
+        <xsl:variable name="codeSchemeSchemeID" select="r:CodeSchemeReference/r:ID"/>
+        
+        <xsl:for-each select="//l:CodeScheme[@id = $codeSchemeSchemeID]/l:Code">
+            
+            <disco:hasConcept>
+                <xsl:attribute name="rdf:resurce">
+                    <xsl:apply-templates select="l:CategoryReference" />
+                </xsl:attribute>                        
+            </disco:hasConcept>                
+        </xsl:for-each>      
+    </xsl:template>
+    
+    <xsl:template match="l:CategoryReference">
+        <xsl:variable name="categoryID" select="r:ID" />
+        <xsl:for-each select="//l:Category[@id = $categoryID]">
+            <xsl:call-template name="createUriByElement"/>
+        </xsl:for-each>
+    </xsl:template>
+    
 </xsl:stylesheet>

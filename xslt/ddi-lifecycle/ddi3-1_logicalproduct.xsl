@@ -104,11 +104,7 @@ Assigned : Thomas Bosch
             <!-- disco:universe -->
             <xsl:for-each select="r:UniverseReference">
                 <disco:universe>
-                    <xsl:attribute name="rdf:resource">
-                        <xsl:value-of select="$studyURI"/>
-                        <xsl:text>#universe-</xsl:text>
-                        <xsl:value-of select="r:ID"/>
-                    </xsl:attribute>
+                    <xsl:call-template name="createUriByElement"/>
                 </disco:universe>
             </xsl:for-each>
 
@@ -118,9 +114,12 @@ Assigned : Thomas Bosch
     <xsl:template match="l:CategoryScheme">
         <xsl:apply-templates select="l:Category"/>
     </xsl:template>
-    
+      
     <xsl:template match="l:Category">
         <rdf:Description>
+            <xsl:attribute name="rdf:about">
+                <xsl:call-template name="createUriByElement"/>
+            </xsl:attribute>           
             <rdf:type>
                 <xsl:attribute name="rdf:resource">http://www.w3.org/2004/02/skos/core#Concept</xsl:attribute>
             </rdf:type>
