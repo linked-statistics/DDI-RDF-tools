@@ -37,6 +37,7 @@ Assigned : Thomas Bosch
     xmlns:ds        = "ddi:dataset:3_1"
     xmlns:pr        = "ddi:profile:3_1">
    
+    <xsl:import href="ddi3-1-util.xsl"/>
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -94,9 +95,7 @@ Assigned : Thomas Bosch
             <xsl:for-each select="r:QuestionReference">
                 <disco:question>
                     <xsl:attribute name="rdf:resource">
-                        <xsl:value-of select="$studyURI"/>
-                        <xsl:text>#question-</xsl:text>
-                        <xsl:value-of select="r:ID"/>
+                        <xsl:call-template name="createUriByReference"/>
                     </xsl:attribute>
                 </disco:question>
             </xsl:for-each>
@@ -105,12 +104,18 @@ Assigned : Thomas Bosch
             <xsl:for-each select="r:UniverseReference">
                 <disco:universe>
                     <xsl:attribute name="rdf:resource">
-                        <xsl:value-of select="$studyURI"/>
-                        <xsl:text>#universe-</xsl:text>
-                        <xsl:value-of select="r:ID"/>
+                        <xsl:call-template name="createUriByReference"/>
                     </xsl:attribute>
                 </disco:universe>
             </xsl:for-each>
+             
+             <xsl:for-each select="l:ConceptReference">
+                 <disco:concept>
+                     <xsl:attribute name="skos:Concept">
+                         <xsl:call-template name="createUriByReference"/>
+                     </xsl:attribute>
+                 </disco:concept>
+             </xsl:for-each>
 
         </rdf:Description>   
     </xsl:template>
