@@ -156,6 +156,14 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             </xsl:for-each>
             
             <!-- disco:HasInstrument -->
+            <xsl:if test="//d:QuestionItem|//d:MultipleQuestionItem">
+                <disco:questionaire>
+                    <xsl:attribute name="rdf:resource">
+                        <xsl:value-of select="$studyURI" /><xsl:text>#questionnaire</xsl:text>
+                    </xsl:attribute>   
+                </disco:questionaire>
+            </xsl:if>
+            
             <!-- dc:hasPart -->
             <!-- disco:HasDataFile -->
             
@@ -169,6 +177,24 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <!-- disco:HasCoverage -->
             
         </rdf:Description>
+        
+        <xsl:if test="//d:QuestionItem|//d:MultipleQuestionItem">
+            <rdf:Resource>
+                <xsl:attribute name="rdf:about">
+                    <xsl:value-of select="$studyURI" /><xsl:text>#questionnaire</xsl:text>
+                </xsl:attribute> 
+                <rdf:type>
+                    <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Questionnaire</xsl:attribute>
+                </rdf:type>
+                <xsl:for-each select="//d:QuestionItem|//d:MultipleQuestionItem">
+                    <disco:question>
+                        <xsl:attribute name="rdf:resource">
+                            <xsl:call-template name="createUriByElement"/>
+                        </xsl:attribute>  
+                    </disco:question>
+                </xsl:for-each>
+            </rdf:Resource>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="r:Citation">
