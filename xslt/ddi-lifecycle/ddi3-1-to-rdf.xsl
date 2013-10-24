@@ -92,6 +92,9 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <!--Question -->
             <xsl:apply-templates select="//d:QuestionItem|//d:MultipleQuestionItem" />
         
+            <!-- Categories -->
+            <xsl:apply-templates select="//l:CategoryScheme" />
+        
             <!-- Coverage -->
             
 	
@@ -158,11 +161,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <!-- disco:variable -->
             <xsl:for-each select="//l:Variable">
                 <disco:variable>
-                    <xsl:attribute name="rdf:resource">
-                        <xsl:value-of select="$studyURI"/>
-                        <xsl:text>#variable-</xsl:text>
-                        <xsl:value-of select="./@id"/>                        
-                    </xsl:attribute>
+                    <xsl:call-template name="createUriByElement"/>
                 </disco:variable>
             </xsl:for-each>
             
