@@ -101,17 +101,9 @@ Assigned : Olof Olsson
         <xsl:for-each select="//l:CodeScheme[@id = $codeSchemeSchemeID]">
             <disco:hasResponseDomain>
                 <xsl:attribute name="rdf:resurce">
-                    <xsl:apply-templates select="l:CategoryReference" />
-                </xsl:attribute>                        
+                    <xsl:call-template name="createUriByElement"/>     
+                </xsl:attribute>
             </disco:hasResponseDomain>                
         </xsl:for-each>      
-    </xsl:template>
-    
-    <xsl:template match="l:CategoryReference">
-        <xsl:variable name="categoryID" select="r:ID" />
-        <xsl:for-each select="//l:Category[@id = $categoryID]">
-            <xsl:call-template name="createUriByElement"/>
-        </xsl:for-each>
-    </xsl:template>
-    
+    </xsl:template>    
 </xsl:stylesheet>
