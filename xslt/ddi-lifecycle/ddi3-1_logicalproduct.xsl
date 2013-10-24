@@ -36,6 +36,9 @@ Assigned : Thomas Bosch
     xmlns:pi        = "ddi:physicalinstance:3_1"
     xmlns:ds        = "ddi:dataset:3_1"
     xmlns:pr        = "ddi:profile:3_1">
+    
+    <xsl:import href="ddi3-1-util.xsl"/>
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -56,9 +59,8 @@ Assigned : Thomas Bosch
         -->
         
          <rdf:Description>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />
-                <xsl:text>#variable-</xsl:text>
-                <xsl:value-of select="@id"/>
+            <xsl:attribute name="rdf:about">
+                <xsl:call-template name="createUriByElement"/>
             </xsl:attribute>
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Variable</xsl:attribute>
@@ -112,6 +114,26 @@ Assigned : Thomas Bosch
             </xsl:for-each>
 
         </rdf:Description>   
+    </xsl:template>
+    
+    <xsl:template match="l:CategoryScheme">
+        <xsl:apply-templates select="l:Category"/>
+    </xsl:template>
+    
+    <xsl:template match="l:Category">
+        <rdf:Description>
+            <rdf:type>
+                <xsl:attribute name="rdf:resource">http://www.w3.org/2004/02/skos/core#Concept</xsl:attribute>
+            </rdf:type>
+            <xsl:for-each select="r:Label">
+                <skos:prefLabel>
+                    <xsl:attribute name="xml:lang">
+                        <xsl:value-of select="@xml:lang" />
+                    </xsl:attribute>
+                    <xsl:value-of select="." />
+                </skos:prefLabel>
+            </xsl:for-each>
+        </rdf:Description>
     </xsl:template>
     
 </xsl:stylesheet>

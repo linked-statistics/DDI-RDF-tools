@@ -40,6 +40,12 @@
     <!-- ===================================================-->
     <xsl:import href="ddi-lifecycle/ddi3-1-to-rdf.xsl"/>
     <xsl:import href="ddi-codebook/ddi2-1-to-rdf.xsl"/>
+    
+    <!-- ================================================== -->
+    <!-- output options                                -->
+    <!-- ===================================================-->
+    <xsl:output method="xml" indent="yes"/>
+    <xsl:strip-space elements="*"/>
 
     <!-- ================================================== -->
     <!-- setup                                              -->
