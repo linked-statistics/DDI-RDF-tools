@@ -43,13 +43,7 @@
     <xsl:import href="ddi-lifecycle/ddi3-1-util.xsl"/>
     
     <!-- ================================================== -->
-    <!-- output options                                -->
-    <!-- ===================================================-->
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
-
-    <!-- ================================================== -->
-    <!-- setup                                              -->
+    <!-- output options                                     -->
     <!-- ===================================================-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>

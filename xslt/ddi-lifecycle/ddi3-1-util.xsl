@@ -32,19 +32,12 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
     <xsl:param name="uri-use-agency">true</xsl:param>
     <xsl:param name="uri-use-version">true</xsl:param>
 
-    <xsl:variable name="lcletters">abcdefghijklmnopqrstuvwxyz</xsl:variable>
-    <xsl:variable name="ucletters">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
-
     <xsl:template name="createUriByElement">
         <xsl:value-of select="$studyURI"/>
         <xsl:text>#</xsl:text>
 
         <xsl:if test="$uri-prefix-elementname='true'">
-            <xsl:call-template name="toLowerCase">
-                <xsl:with-param name="text">
-                    <xsl:value-of select="local-name()"/>
-                </xsl:with-param>
-            </xsl:call-template>
+            <xsl:value-of select="lower-case(local-name())"/>
             <xsl:text>-</xsl:text>
         </xsl:if>
 
@@ -62,22 +55,30 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
     </xsl:template>
 
     <xsl:template name="createUriByReference">
-        <xsl:param name="element" as="node()"/>
-    </xsl:template>
+        <xsl:value-of select="$studyURI"/>
+        <xsl:text>#</xsl:text>
+        
+        <xsl:if test="$uri-prefix-elementname='true'">
+            <xsl:value-of select="lower-case(substring-before(local-name(), 'Reference'))"/>
+            <xsl:text>-</xsl:text>
+        </xsl:if>
+        
+        <xsl:if test="r:IdentifyingAgency and $uri-use-agency='true'">
+            <xsl:value-of select="./r:IdentifyingAgency/text()"/>
+            <xsl:value-of select="$uri-deliminter"/>
+        </xsl:if>
 
-    <xsl:template name="toLowerCase">
-        <xsl:param name="text"/>
-        <xsl:value-of select="translate($text, $ucletters, $lcletters)"/>
+        <xsl:value-of select="r:ID/text()"/>
+
+        <xsl:if test="r:Version and $uri-use-version='true'">
+            <xsl:value-of select="$uri-deliminter"/>
+            <xsl:value-of select="r:Version/text()"/>
+        </xsl:if>
     </xsl:template>
-    
+        
     <xsl:template name="createLanguageAttribute">
         <xsl:if test="@xml:lang">
             <xsl:attribute name="xml:lang" select="@xml:lang" />
         </xsl:if>
     </xsl:template>
-
-    <!-- for test ...
-    <xsl:template match="//l:Variable">
-        <xsl:call-template name="createUriByElement"/>
-    </xsl:template-->
 </xsl:stylesheet>

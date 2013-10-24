@@ -149,10 +149,8 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <xsl:for-each select="r:UniverseReference">
                 <disco:isMeasureOf>
                     <xsl:attribute name="rdf:resource">
-                        <xsl:value-of select="$studyURI"/>
-                        <xsl:text>#universe-</xsl:text>
-                        <xsl:value-of select="r:ID"/>
-                    </xsl:attribute>
+                        <xsl:call-template name="createUriByReference"/>
+                    </xsl:attribute>                    
                 </disco:isMeasureOf>
             </xsl:for-each>
             
