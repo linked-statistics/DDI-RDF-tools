@@ -69,6 +69,13 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
         <xsl:param name="text"/>
         <xsl:value-of select="translate($text, $ucletters, $lcletters)"/>
     </xsl:template>
+    
+    <xsl:template name="createLanguageAttribute">
+        <xsl:param name="lang"/>
+        <xsl:if test="$lang">
+            <xsl:attribute name="xml:lang" select="$lang" />
+        </xsl:if>
+    </xsl:template>
 
     <!-- for test ...
     <xsl:template match="//l:Variable">
