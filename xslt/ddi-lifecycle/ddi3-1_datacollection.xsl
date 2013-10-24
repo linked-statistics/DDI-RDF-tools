@@ -75,7 +75,7 @@ Assigned : Olof Olsson
             <!-- Question Concept -->
             <xsl:for-each select="r:ConceptReference">
                 <disco:hasConcept>
-                    <xsl:attribute name="rdf:resurce">
+                    <xsl:attribute name="rdf:resource">
                         <xsl:call-template name="createUriByReference"/>
                     </xsl:attribute>
                 </disco:hasConcept>
@@ -100,7 +100,7 @@ Assigned : Olof Olsson
         
         <xsl:for-each select="//l:CodeScheme[@id = $codeSchemeSchemeID]">
             <disco:hasResponseDomain>
-                <xsl:attribute name="rdf:resurce">
+                <xsl:attribute name="rdf:resource">
                     <xsl:apply-templates select="l:CategoryReference" />
                 </xsl:attribute>                        
             </disco:hasResponseDomain>                
