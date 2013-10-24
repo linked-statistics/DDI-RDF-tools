@@ -44,8 +44,8 @@ Assigned : Olof Olsson
     <xsl:template match="d:Instrument">
         <rdf:Desciption>
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$studyURI" /><xsl:text>#instrument-</xsl:text><xsl:value-of select="@id" />
-            </xsl:attribute>
+                <xsl:call-template name="createUriByElement"/>
+            </xsl:attribute>    
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Intrument</xsl:attribute>
             </rdf:type>            
@@ -56,8 +56,8 @@ Assigned : Olof Olsson
     <xsl:template match="d:QuestionItem|d:MultipleQuestionItem">
         <rdf:Description>
             <xsl:attribute name="rdf:about">
-                <xsl:value-of select="$studyURI" /><xsl:text>#question-</xsl:text><xsl:value-of select="@id" />
-            </xsl:attribute>            
+                <xsl:call-template name="createUriByElement"/>
+            </xsl:attribute>        
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Question</xsl:attribute>
             </rdf:type>
@@ -88,7 +88,7 @@ Assigned : Olof Olsson
                 <xsl:for-each select="//l:CategoryScheme[@id = $categorySchemeID]/l:Category">
                     <disco:hasConcept>
                         <xsl:attribute name="rdf:resurce">
-                            <xsl:value-of select="$studyURI" /><xsl:text>#concept-</xsl:text><xsl:value-of select="@id" />
+                            <xsl:call-template name="createUriByElement" />
                         </xsl:attribute>                        
                     </disco:hasConcept>                
                 </xsl:for-each>
