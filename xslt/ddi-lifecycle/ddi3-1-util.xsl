@@ -57,12 +57,12 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
     <xsl:template name="createUriByReference">
         <xsl:value-of select="$studyURI"/>
         <xsl:text>#</xsl:text>
-
+        
         <xsl:if test="$uri-prefix-elementname='true'">
             <xsl:value-of select="lower-case(substring-before(local-name(), 'Reference'))"/>
             <xsl:text>-</xsl:text>
         </xsl:if>
-
+        
         <xsl:if test="r:IdentifyingAgency and $uri-use-agency='true'">
             <xsl:value-of select="./r:IdentifyingAgency/text()"/>
             <xsl:value-of select="$uri-deliminter"/>
@@ -73,6 +73,13 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
         <xsl:if test="r:Version and $uri-use-version='true'">
             <xsl:value-of select="$uri-deliminter"/>
             <xsl:value-of select="r:Version/text()"/>
+        </xsl:if>
+    </xsl:template>
+        
+    <xsl:template name="createLanguageAttribute">
+        <xsl:param name="lang"/>
+        <xsl:if test="$lang">
+            <xsl:attribute name="xml:lang" select="$lang" />
         </xsl:if>
     </xsl:template>
 </xsl:stylesheet>
