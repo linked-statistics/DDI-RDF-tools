@@ -48,6 +48,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 xmlns:ds        = "ddi:dataset:3_1"
                 xmlns:pr        = "ddi:profile:3_1">
     
+    <xsl:import href="ddi3-1-util.xsl"/>
     <xsl:import href="ddi3-1_datacollection.xsl"/>
     <xsl:import href="ddi3-1_logicalproduct.xsl"/>
     
@@ -56,6 +57,12 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
 
     <!-- used as a prefix for elements -->
     <xsl:param name="studyURI">http://some.uri.to.my.data.defined.as.a.param/<xsl:value-of select="/ddilc:DDIInstance/s:StudyUnit/@id"/></xsl:param>
+    
+    <!-- uri build params to include agency and version and prefix with element name -->   
+    <xsl:param name="uri-deliminter">:</xsl:param>
+    <xsl:param name="uri-prefix-elementname">true</xsl:param>
+    <xsl:param name="uri-use-agency">true</xsl:param>
+    <xsl:param name="uri-use-version">true</xsl:param>
     
     <!-- this param is set to true if data is publicaly accessible -->
     <xsl:param name="isPublic">false</xsl:param>

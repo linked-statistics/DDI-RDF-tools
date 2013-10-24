@@ -36,6 +36,9 @@ Assigned : Thomas Bosch
     xmlns:pi        = "ddi:physicalinstance:3_1"
     xmlns:ds        = "ddi:dataset:3_1"
     xmlns:pr        = "ddi:profile:3_1">
+    
+    <xsl:import href="ddi3-1-util.xsl"/>
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
 
@@ -56,9 +59,8 @@ Assigned : Thomas Bosch
         -->
         
          <rdf:Description>
-            <xsl:attribute name="rdf:about"><xsl:value-of select="$studyURI" />
-                <xsl:text>#variable-</xsl:text>
-                <xsl:value-of select="@id"/>
+            <xsl:attribute name="rdf:about">
+                <xsl:call-template name="createUriByElement"/>
             </xsl:attribute>
             <rdf:type>
                 <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Variable</xsl:attribute>
