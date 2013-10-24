@@ -36,8 +36,13 @@ Assigned : Olof Olsson
     xmlns:pi        = "ddi:physicalinstance:3_1"
     xmlns:ds        = "ddi:dataset:3_1"
     xmlns:pr        = "ddi:profile:3_1">
+    
+    <xsl:import href="ddi3-1-util.xsl"/>
+    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
+   
     
     
     <!-- Intrument -->
@@ -75,7 +80,9 @@ Assigned : Olof Olsson
             <!-- QuestionText -->
             <xsl:for-each select="d:QuestionText">
                 <disco:literalText>
-                    <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang" /></xsl:attribute>
+                    <xsl:call-template name="createLanguageAttribute">
+                        <xsl:with-param name="lang" select="@xml:lang" />
+                    </xsl:call-template>
                     <xsl:value-of select="d:LiteralText/d:Text" />
                 </disco:literalText>                
             </xsl:for-each>

@@ -44,4 +44,11 @@ Document : ddi3-1-util.xsl Description: utillities for convertions ofDDI 3.1 int
     <xsl:template name="createUriByReference">
         <xsl:param name="element" as="node()"/>
     </xsl:template>
+    
+    <xsl:template name="createLanguageAttribute">
+        <xsl:param name="lang"/>
+        <xsl:if test="$lang">
+            <xsl:attribute name="xml:lang" select="$lang" />
+        </xsl:if>
+    </xsl:template>
 </xsl:stylesheet>
