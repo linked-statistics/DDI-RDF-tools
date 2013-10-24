@@ -65,14 +65,20 @@
         <d:DataCollection id="dc1">
             <d:QuestionScheme id="qscheme1">
                 <d:QuestionItem id="qstn1">
+                    <d:QuestionItemName>q1</d:QuestionItemName>
                     <d:QuestionText>
                         <d:LiteralText>
                             <d:Text>qstn1-var1?</d:Text>
                         </d:LiteralText>
                     </d:QuestionText>
-                    <d:TextDomain/>
+                    <d:CategoryDomain>
+                        <r:CategorySchemeReference>
+                            <r:ID>cat-scehme-1</r:ID>
+                        </r:CategorySchemeReference>
+                    </d:CategoryDomain>
                 </d:QuestionItem>
                 <d:QuestionItem id="qstn2">
+                    <d:QuestionItemName>q2</d:QuestionItemName>
                     <d:QuestionText>
                         <d:LiteralText>
                             <d:Text>qstn2-var2?</d:Text>
