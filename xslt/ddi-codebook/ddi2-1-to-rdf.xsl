@@ -10,7 +10,7 @@ Bosch, Thomas <Thomas.Bosch at gesis.org>
 Olsson, Olof <olof.olsson at snd.gu.se>
 Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
 -->
-<xsl:stylesheet version="1.0" 
+<xsl:stylesheet version="2.0" 
     xmlns:xsl       = "http://www.w3.org/1999/XSL/Transform"
     xmlns:rdf       = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
     xmlns:si        = "http://www.w3schools.com/rdf/" 

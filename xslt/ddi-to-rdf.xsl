@@ -14,7 +14,7 @@ Bosch, Thomas <Thomas.Bosch at gesis.org>
 Olsson, Olof <olof.olsson at snd.gu.se>
 Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
 -->
-<xsl:stylesheet version="1.0" 
+<xsl:stylesheet version="2.0" 
                 xmlns:xsl       = "http://www.w3.org/1999/XSL/Transform"
                 xmlns:rdf       = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
                 xmlns:si        = "http://www.w3schools.com/rdf/" 
@@ -36,7 +36,12 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
     
+    <!-- used as a prefix for elements -->
+    <xsl:param name="studyURI">http://some.uri.to.my.study.defined.as.a.param/</xsl:param>
+    
     <xsl:variable name="discoURI">http://rdf-vocabulary.ddialliance.org/discovery#</xsl:variable>
+    
+    
     
     <xsl:template match="/">
         <xsl:apply-templates select="ddilc:DDIInstance" />
