@@ -42,13 +42,7 @@
     <xsl:import href="ddi-codebook/ddi2-1-to-rdf.xsl"/>   
     
     <!-- ================================================== -->
-    <!-- output options                                -->
-    <!-- ===================================================-->
-    <xsl:output method="xml" indent="yes"/>
-    <xsl:strip-space elements="*"/>
-
-    <!-- ================================================== -->
-    <!-- setup                                              -->
+    <!-- output options                                     -->
     <!-- ===================================================-->
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
