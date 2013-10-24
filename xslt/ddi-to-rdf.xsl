@@ -40,6 +40,6 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
     
     <xsl:template match="/">
         <xsl:apply-templates select="ddilc:DDIInstance" />
-        <xsl:apply-imports select="ddicb:codeBook" />
+        <xsl:apply-templates select="ddicb:codeBook" />
     </xsl:template>
 </xsl:stylesheet>
