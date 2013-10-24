@@ -37,13 +37,8 @@ Assigned : Olof Olsson
     xmlns:ds        = "ddi:dataset:3_1"
     xmlns:pr        = "ddi:profile:3_1">
     
-    <xsl:import href="ddi3-1-util.xsl"/>
-    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
-    
-   
-    
     
     <!-- Intrument -->
     <xsl:template match="d:Instrument">
@@ -70,9 +65,7 @@ Assigned : Olof Olsson
             <!-- QuestionItemName -->
             <xsl:for-each select="d:QuestionItemName|d:MultipleQuestionItemName">
                 <skos:prefLabel>
-                    <xsl:attribute name="xml:lang">
-                        <xsl:value-of select="@xml:lang" />
-                    </xsl:attribute>
+                    <xsl:call-template name="createLanguageAttribute" />
                     <xsl:value-of select="." />
                 </skos:prefLabel>
             </xsl:for-each>
@@ -80,9 +73,7 @@ Assigned : Olof Olsson
             <!-- QuestionText -->
             <xsl:for-each select="d:QuestionText">
                 <disco:literalText>
-                    <xsl:call-template name="createLanguageAttribute">
-                        <xsl:with-param name="lang" select="@xml:lang" />
-                    </xsl:call-template>
+                    <xsl:call-template name="createLanguageAttribute" />
                     <xsl:value-of select="d:LiteralText/d:Text" />
                 </disco:literalText>                
             </xsl:for-each>

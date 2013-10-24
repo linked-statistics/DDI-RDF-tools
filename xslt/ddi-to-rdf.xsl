@@ -40,6 +40,7 @@
     <!-- ===================================================-->
     <xsl:import href="ddi-lifecycle/ddi3-1-to-rdf.xsl"/>
     <xsl:import href="ddi-codebook/ddi2-1-to-rdf.xsl"/>   
+    <xsl:import href="ddi-lifecycle/ddi3-1-util.xsl"/>
     
     <!-- ================================================== -->
     <!-- output options                                -->

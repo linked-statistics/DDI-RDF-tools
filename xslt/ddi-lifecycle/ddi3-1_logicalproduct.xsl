@@ -36,8 +36,7 @@ Assigned : Thomas Bosch
     xmlns:pi        = "ddi:physicalinstance:3_1"
     xmlns:ds        = "ddi:dataset:3_1"
     xmlns:pr        = "ddi:profile:3_1">
-    
-    <xsl:import href="ddi3-1-util.xsl"/>
+   
     
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
