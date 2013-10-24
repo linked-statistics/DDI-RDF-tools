@@ -94,6 +94,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
         
             <!-- Categories -->
             <xsl:apply-templates select="//l:CategoryScheme" />
+            <xsl:apply-templates select="//l:CodeScheme" />
         
             <!-- Coverage -->
             

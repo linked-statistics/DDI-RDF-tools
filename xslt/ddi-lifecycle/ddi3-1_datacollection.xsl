@@ -36,9 +36,9 @@ Assigned : Olof Olsson
     xmlns:pi        = "ddi:physicalinstance:3_1"
     xmlns:ds        = "ddi:dataset:3_1"
     xmlns:pr        = "ddi:profile:3_1">
-    
     <xsl:output method="xml" indent="yes"/>
     <xsl:strip-space elements="*"/>
+    
     
     <!-- Intrument -->
     <xsl:template match="d:Instrument">
@@ -65,19 +65,31 @@ Assigned : Olof Olsson
             <!-- QuestionItemName -->
             <xsl:for-each select="d:QuestionItemName|d:MultipleQuestionItemName">
                 <skos:prefLabel>
-                    <xsl:call-template name="createLanguageAttribute" />
+                    <xsl:attribute name="xml:lang">
+                        <xsl:value-of select="@xml:lang" />
+                    </xsl:attribute>
                     <xsl:value-of select="." />
                 </skos:prefLabel>
+            </xsl:for-each>
+            
+            <!-- Question Concept -->
+            <xsl:for-each select="r:ConceptReference">
+                <disco:hasConcept>
+                    <xsl:attribute name="rdf:resurce">
+                        <xsl:call-template name="createUriByReference"/>
+                    </xsl:attribute>
+                </disco:hasConcept>
             </xsl:for-each>
             
             <!-- QuestionText -->
             <xsl:for-each select="d:QuestionText">
                 <disco:literalText>
-                    <xsl:call-template name="createLanguageAttribute" />
+                    <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang" /></xsl:attribute>
                     <xsl:value-of select="d:LiteralText/d:Text" />
                 </disco:literalText>                
             </xsl:for-each>
             
+            <!-- Response Domain -->
             <xsl:apply-templates select="d:CodeDomain" />
 
         </rdf:Description>
@@ -86,13 +98,12 @@ Assigned : Olof Olsson
     <xsl:template match="d:CodeDomain">
         <xsl:variable name="codeSchemeSchemeID" select="r:CodeSchemeReference/r:ID"/>
         
-        <xsl:for-each select="//l:CodeScheme[@id = $codeSchemeSchemeID]/l:Code">
-            
-            <disco:hasConcept>
+        <xsl:for-each select="//l:CodeScheme[@id = $codeSchemeSchemeID]">
+            <disco:hasResponseDomain>
                 <xsl:attribute name="rdf:resurce">
                     <xsl:apply-templates select="l:CategoryReference" />
                 </xsl:attribute>                        
-            </disco:hasConcept>                
+            </disco:hasResponseDomain>                
         </xsl:for-each>      
     </xsl:template>
     

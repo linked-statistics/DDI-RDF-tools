@@ -124,6 +124,17 @@ Assigned : Thomas Bosch
     <xsl:template match="l:CategoryScheme">
         <xsl:apply-templates select="l:Category"/>
     </xsl:template>
+    
+    <xsl:template match="l:CodeScheme">
+        <rdf:Description>
+            <xsl:attribute name="rdf:about">
+                <xsl:call-template name="createUriByElement"/>
+            </xsl:attribute>           
+            <rdf:type>
+                <xsl:attribute name="rdf:resource">http://www.w3.org/2004/02/skos/core#ConceptScheme</xsl:attribute>
+            </rdf:type>
+        </rdf:Description>
+    </xsl:template>
       
     <xsl:template match="l:Category">
         <rdf:Description>
