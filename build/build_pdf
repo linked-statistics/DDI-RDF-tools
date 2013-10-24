@@ -1,0 +1,53 @@
+#!/bin/sh
+
+# usage: ./build_pdf [-h] [-l LANGUAGE] input_file.xml 
+
+
+# ==========================
+# Handle options & arguments
+# ==========================
+
+LANGUAGE_STRING="sv"	# default i18n file
+
+# handle options
+while getopts "hl:" opt
+do
+	case $opt in
+		h) echo "Usage: build_pdf [-h] [-l LANGUAGE] input_file.xml"
+		   exit 1;;
+		l) LANGUAGE_STRING=$OPTARG;;
+	esac
+done
+
+shift $(($OPTIND - 1)) # shift argument to position 1
+
+FILENAME="${1%.*}" # remove file extension from DDI input file
+
+# parameters for Saxon and FOP
+PARAMS="paper.type=A4 \
+        fop1.extensions=1 \
+        translations-file=./i18n/$LANGUAGE_STRING.xml"
+
+# ============
+# Process file
+# ============
+
+echo "[build_pdf] Using language: $LANGUAGE_STRING"
+
+# run xincludes
+echo "[process_xincludes] Assembling dditofo_complete.xsl"
+./process_xincludes
+
+# transform codebook to fo using saxon
+echo "[Saxon] Transforming $1 to FO..."
+java net.sf.saxon.Transform -s:$1 -xsl:dditofo_complete.xsl -o:$FILENAME.fo $PARAMS
+echo "[Saxon] File $FILENAME.fo generated"
+
+# render PDF from FO
+echo "[FOP] Rendering $FILENAME.fo to PDF..."
+fop -fo $FILENAME.fo -pdf $FILENAME.pdf
+echo "[FOP] $FILENAME.pdf generated."
+
+# cleanup
+echo "[build_pdf] Removing .fo file"
+rm $FILENAME.fo
