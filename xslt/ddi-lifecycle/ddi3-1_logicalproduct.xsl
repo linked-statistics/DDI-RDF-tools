@@ -109,6 +109,7 @@ Assigned : Thomas Bosch
                 </disco:universe>
             </xsl:for-each>
              
+             <!-- disco:concept -->
              <xsl:for-each select="l:ConceptReference">
                  <disco:concept>
                      <xsl:attribute name="skos:Concept">
