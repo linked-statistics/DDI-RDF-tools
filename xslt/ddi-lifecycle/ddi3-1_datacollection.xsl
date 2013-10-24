@@ -79,6 +79,21 @@ Assigned : Olof Olsson
                     <xsl:value-of select="d:LiteralText/d:Text" />
                 </disco:literalText>                
             </xsl:for-each>
+            
+            <!-- hasConcept -->
+            <xsl:if test="d:CodeDomain">
+                
+                <xsl:variable name="categorySchemeID" select="r:CategorySchemeReferenc/r:ID"/>
+                
+                <xsl:for-each select="//l:CategoryScheme[@id = $categorySchemeID]/l:Category">
+                    <disco:hasConcept>
+                        <xsl:attribute name="rdf:resurce">
+                            <xsl:value-of select="$studyURI" /><xsl:text>#concept-</xsl:text><xsl:value-of select="@id" />
+                        </xsl:attribute>                        
+                    </disco:hasConcept>                
+                </xsl:for-each>
+            </xsl:if>
+
         </rdf:Description>
-    </xsl:template>    
+    </xsl:template>  
 </xsl:stylesheet>
