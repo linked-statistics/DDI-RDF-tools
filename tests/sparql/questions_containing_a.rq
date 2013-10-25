@@ -1,18 +1,17 @@
 PREFIX rdfs:    <http://www.w3.org/2000/01/rdf-schema#>
-PREFIX disco:   <http://rdf-vocabulary.ddialliance.org/discovery>
+PREFIX disco:   <http://rdf-vocabulary.ddialliance.org/discovery#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX skos:	<http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?studyTitle ?studyAbstract
 WHERE {
   ?study a disco:Study ;
-    disco:instrument ?instrument ;
+    disco:questionnaire ?questionnaire ;
     dcterms:title ?studyTitle ;
     dcterms:abstract ?studyAbstract .
 
-  ?instrument disco:questionnaire ?questionnaire .
   ?questionnaire disco:question ?question .
   ?question disco:questionText ?questionText .
 
-  FILTER (regex(?questionText, "commut.*work"))
+  FILTER (regex(?questionText, "family"))
 }

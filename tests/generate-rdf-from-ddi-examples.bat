@@ -1,8 +1,12 @@
+@echo off
+SET SAXON=C:\Users\olof\Dropbox\utils\saxon-he\saxon9he.jar
 
 if not exist rdf-xml mkdir rdf-xml
 if not exist rdf-ttl mkdir rdf-ttl
 
-xsltproc --stringparam studyURI http://my.prefix.com/study/42 --output rdf-xml/DDI3.1-generic.rdf.xml ../xslt/ddi-to-rdf.xsl ../ddi-examples/DDI3.1-generic.xml
-xsltproc --stringparam studyURI http://snd.gu.se/study/1 --output rdf-xml/ISSP.1994.Family-and-changing-gender-roles-II-Sweden.rdf.xml ../xslt/ddi-to-rdf.xsl ../ddi-examples/ISSP.1994.Family-and-changing-gender-roles-II-Sweden.xml
-rdfcopy rdf-xml/ISSP.1994.Family-and-changing-gender-roles-II-Sweden.rdf.xml RDF/XML TURTLE > rdf-ttl/ISSP.1994.Family-and-changing-gender-roles-II-Sweden.ttl
-rdfcopy rdf-xml/DDI3.1-generic.rdf.xml RDF/XML TURTLE > rdf-ttl/DDI3.1-generic.ttl
+
+for /R "../ddi-examples/DDI3.1/" %%f in (*.xml) do (
+	call java -cp %SAXON% net.sf.saxon.Transform -t -s:../ddi-examples/DDI3.1/%%~nf.xml -xsl:../xslt/ddi-to-rdf.xsl -o:rdf-xml/%%~nf.rdf studyURI=http://%%~nf.com/
+	rdfcopy rdf-xml/%%~nf.rdf RDF/XML TURTLE > rdf-ttl/%%~nf.ttl
+)
+
