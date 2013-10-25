@@ -186,6 +186,20 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <rdf:type>
                     <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Questionnaire</xsl:attribute>
                 </rdf:type>
+                
+                <xsl:for-each select="//d:ModeOfCollection">
+                    <disco:CollectionMode>
+                        <xsl:attribute name="rdf:resource">
+                            <xsl:call-template name="createUriByReference"/>
+                        </xsl:attribute>
+                    </disco:CollectionMode>
+                </xsl:for-each>
+                <disco:concept>
+                    <xsl:attribute name="skos:Concept">
+                        <xsl:call-template name="createUriByReference"/>
+                    </xsl:attribute>
+                </disco:concept>
+                
                 <xsl:for-each select="//d:QuestionItem|//d:MultipleQuestionItem">
                     <disco:question>
                         <xsl:attribute name="rdf:resource">
