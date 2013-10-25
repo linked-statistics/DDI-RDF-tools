@@ -83,10 +83,10 @@ Assigned : Olof Olsson
             
             <!-- QuestionText -->
             <xsl:for-each select="d:QuestionText">
-                <disco:literalText>
+                <disco:questionText>
                     <xsl:attribute name="xml:lang"><xsl:value-of select="@xml:lang" /></xsl:attribute>
                     <xsl:value-of select="d:LiteralText/d:Text" />
-                </disco:literalText>                
+                </disco:questionText>                
             </xsl:for-each>
             
             <!-- Response Domain -->
