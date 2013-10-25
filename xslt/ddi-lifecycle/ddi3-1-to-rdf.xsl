@@ -124,19 +124,20 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <dc:identifier>
                 <xsl:value-of select="@id"/>
             </dc:identifier>
-            
+                        
             <!-- AnalysisUnit -->
             <xsl:if test="r:AnalysisUnit">
                 <disco:AnalysisUnit>
-                    <rdf:type>
-                        <xsl:attribute name="rdf:resource">http://www.w3.org/2004/02/skos/core#Concept</xsl:attribute>
-                    </rdf:type>
-                    <xsl:for-each select="r:Label">
+                    <rdf:Description>
+                        <rdf:type>
+                            <xsl:attribute name="rdf:resource">http://www.w3.org/2004/02/skos/core#Concept</xsl:attribute>
+                        </rdf:type>
+                        
                         <skos:prefLabel>
                             <xsl:call-template name="createLanguageAttribute"/>
-                            <xsl:value-of select="." />
+                            <xsl:value-of select="r:AnalysisUnit" />
                         </skos:prefLabel>
-                    </xsl:for-each>                    
+                    </rdf:Description>
                 </disco:AnalysisUnit>
             </xsl:if>
             
