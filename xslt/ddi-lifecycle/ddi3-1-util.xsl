@@ -81,4 +81,10 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
             <xsl:attribute name="xml:lang" select="@xml:lang" />
         </xsl:if>
     </xsl:template>
+    
+    <xsl:template name="createSkosLabel">
+        <xsl:if test="@xml:lang">
+            <xsl:attribute name="xml:lang" select="@xml:lang" />
+        </xsl:if>
+    </xsl:template>
 </xsl:stylesheet>
