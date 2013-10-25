@@ -146,16 +146,14 @@ Assigned : Thomas Bosch
             </rdf:type>
             <xsl:for-each select="r:Label">
                 <skos:prefLabel>
-                    <xsl:attribute name="xml:lang">
-                        <xsl:value-of select="@xml:lang" />
-                    </xsl:attribute>
+                    <xsl:call-template name="createLanguageAttribute"/>
                     <xsl:value-of select="." />
                 </skos:prefLabel>
             </xsl:for-each>
             <xsl:variable name="categoryID" select="@id" />
             <xsl:for-each select="//l:CodeScheme[l:Code/l:CategoryReference/r:ID =$categoryID]">
                 <skos:inScheme>
-                    <xsl:attribute name="rdf:about">
+                    <xsl:attribute name="rdf:resource">
                         <xsl:call-template name="createUriByElement"/>
                     </xsl:attribute>                          
                 </skos:inScheme>

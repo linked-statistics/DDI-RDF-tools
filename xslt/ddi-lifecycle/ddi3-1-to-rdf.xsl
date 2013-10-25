@@ -128,6 +128,21 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:value-of select="@id"/>
             </dc:identifier>
             
+            <!-- AnalysisUnit -->
+            <xsl:if test="r:AnalysisUnit">
+                <disco:AnalysisUnit>
+                    <rdf:type>
+                        <xsl:attribute name="rdf:resource">http://www.w3.org/2004/02/skos/core#Concept</xsl:attribute>
+                    </rdf:type>
+                    <xsl:for-each select="r:Label">
+                        <skos:prefLabel>
+                            <xsl:call-template name="createLanguageAttribute"/>
+                            <xsl:value-of select="." />
+                        </skos:prefLabel>
+                    </xsl:for-each>                    
+                </disco:AnalysisUnit>
+            </xsl:if>
+            
             <!-- abstract -->
             <xsl:for-each select="s:Abstract">
                 <dcterms:abstract>
@@ -182,7 +197,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
         </rdf:Description>
         
         <xsl:if test="//d:QuestionItem|//d:MultipleQuestionItem">
-            <rdf:Resource>
+            <rdf:Description>
                 <xsl:attribute name="rdf:about">
                     <xsl:value-of select="$studyURI" /><xsl:text>#questionnaire</xsl:text>
                 </xsl:attribute> 
@@ -210,7 +225,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                         </xsl:attribute>  
                     </disco:question>
                 </xsl:for-each>
-            </rdf:Resource>
+            </rdf:Description>
         </xsl:if>
     </xsl:template>
 
@@ -240,7 +255,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             </disco:subtitle>
         </xsl:for-each>        
     </xsl:template>
-    
+        
     <!-- Universe -->
     <xsl:template match="c:Universe">
         <rdf:Description>
