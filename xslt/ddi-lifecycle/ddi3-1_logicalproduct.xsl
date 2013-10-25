@@ -146,9 +146,7 @@ Assigned : Thomas Bosch
             </rdf:type>
             <xsl:for-each select="r:Label">
                 <skos:prefLabel>
-                    <xsl:attribute name="xml:lang">
-                        <xsl:value-of select="@xml:lang" />
-                    </xsl:attribute>
+                    <xsl:call-template name="createLanguageAttribute"/>
                     <xsl:value-of select="." />
                 </skos:prefLabel>
             </xsl:for-each>
