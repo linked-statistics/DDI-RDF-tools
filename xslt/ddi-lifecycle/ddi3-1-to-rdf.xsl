@@ -271,10 +271,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                 <xsl:attribute name="rdf:resource"><xsl:text>http://www.w3.org/2004/02/skos/core#Concept</xsl:text></xsl:attribute>
             </rdf:type>            
             <xsl:for-each select="r:Label">
-                <skos:prefLabel>                
-                    <xsl:call-template name="createLanguageAttribute"/>
-                    <xsl:value-of select="."/>
-                </skos:prefLabel>
+                    <xsl:call-template name="createSkosLabel"/>                
             </xsl:for-each>
         </rdf:Description>
     </xsl:template>
