@@ -31,7 +31,11 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
     <xsl:param name="uri-prefix-elementname">true</xsl:param>
     <xsl:param name="uri-use-agency">true</xsl:param>
     <xsl:param name="uri-use-version">true</xsl:param>
-
+    
+    <xsl:variable name="base-xmlschema-url">
+        <xsl:text>http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#</xsl:text>
+    </xsl:variable>
+    
     <xsl:template name="createUriByElement">
         <xsl:value-of select="$studyURI"/>
         <xsl:text>#</xsl:text>
