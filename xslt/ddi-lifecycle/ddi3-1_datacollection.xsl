@@ -98,10 +98,10 @@ Assigned : Olof Olsson
     <xsl:template match="d:CodeDomain">
         <xsl:variable name="codeSchemeSchemeID" select="r:CodeSchemeReference/r:ID"/>
         
-        <xsl:for-each select="//l:CodeScheme[@id = $codeSchemeSchemeID]">
+        <xsl:for-each select="r:CodeSchemeReference">
             <disco:hasResponseDomain>
                 <xsl:attribute name="rdf:resource">
-                    <xsl:apply-templates select="l:CategoryReference" />
+                    <xsl:call-template name="createUriByReference"/>
                 </xsl:attribute>                        
             </disco:hasResponseDomain>                
         </xsl:for-each>      

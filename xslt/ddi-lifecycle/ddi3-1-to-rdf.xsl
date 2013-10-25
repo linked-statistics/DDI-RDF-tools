@@ -179,7 +179,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
         </rdf:Description>
         
         <xsl:if test="//d:QuestionItem|//d:MultipleQuestionItem">
-            <rdf:Resource>
+            <rdf:Description>
                 <xsl:attribute name="rdf:about">
                     <xsl:value-of select="$studyURI" /><xsl:text>#questionnaire</xsl:text>
                 </xsl:attribute> 
@@ -207,7 +207,7 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                         </xsl:attribute>  
                     </disco:question>
                 </xsl:for-each>
-            </rdf:Resource>
+            </rdf:Description>
         </xsl:if>
     </xsl:template>
 
