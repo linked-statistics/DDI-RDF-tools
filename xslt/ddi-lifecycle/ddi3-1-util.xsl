@@ -108,4 +108,14 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
+    
+    <xsl:template name="createRdfsTypeRepresentation">
+        <xsl:param name="type"/>
+        <disco:representation>
+            <xsl:attribute name="rdfs:Datatype">
+                <xsl:value-of select="$base-xmlschema-url"/>
+                <xsl:value-of select="$type"/>
+            </xsl:attribute>
+        </disco:representation>
+    </xsl:template>
 </xsl:stylesheet>

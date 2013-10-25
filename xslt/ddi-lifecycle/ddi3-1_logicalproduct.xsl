@@ -305,16 +305,6 @@ Assigned : Thomas Bosch
         </rdf:Description>
     </xsl:template>
 
-    <xsl:template name="createRdfsTypeRepresentation">
-        <xsl:param name="type"/>
-        <disco:representation>
-            <xsl:attribute name="rdfs:Datatype">
-                <xsl:value-of select="$base-xmlschema-url"/>
-                <xsl:value-of select="$type"/>
-            </xsl:attribute>
-        </disco:representation>
-    </xsl:template>
-
     <xsl:template match="l:CategoryScheme">
         <xsl:apply-templates select="l:Category"/>
     </xsl:template>
