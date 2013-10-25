@@ -77,6 +77,9 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
             <!-- Universe -->
             <xsl:apply-templates select="//c:Universe" />
                     
+            <!-- Concept -->
+            <xsl:apply-templates select="//c:Concept" />
+            
             <!-- DataFile -->
 
 
@@ -272,6 +275,19 @@ Zapilko, Benjamin <Benjamin.Zapilko at gesis.org>
                     </xsl:attribute>
                     <xsl:value-of select="."/>
                 </skos:definition>
+            </xsl:for-each>
+        </rdf:Description>
+    </xsl:template>
+    
+    <!-- Concept -->
+    <xsl:template match="c:Concept">        
+        <rdf:Description>
+            <xsl:call-template name="createUriByElement"/>
+            <rdf:type>
+                <xsl:attribute name="rdf:resource"><xsl:text>http://www.w3.org/2004/02/skos/core#Concept</xsl:text></xsl:attribute>
+            </rdf:type>            
+            <xsl:for-each select="r:Label">
+                    <xsl:call-template name="createSkosLabel"/>                
             </xsl:for-each>
         </rdf:Description>
     </xsl:template>

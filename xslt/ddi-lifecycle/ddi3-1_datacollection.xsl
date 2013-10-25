@@ -89,9 +89,33 @@ Assigned : Olof Olsson
                 </disco:questionText>                
             </xsl:for-each>
             
-            <!-- Response Domain -->
-            <xsl:apply-templates select="d:CodeDomain" />
-
+            <!-- currently no response domain in disco spec -see bug on git hub ddi disco -->
+            <!-- Response Domain -->            
+            <!--xsl:apply-templates select="d:CodeDomain" />
+            
+            <xsl:if test="d:NumericDomain">
+                <xsl:call-template name="createDiscoRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:value-of select="d:NumericDomain/@type"/>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:if>
+            
+            <xsl:if test="d:TextDomain">
+                <xsl:call-template name="createDiscoRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>String</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:if>
+            
+            <xsl:if test="d:DateTimeDomain">
+                <xsl:call-template name="createDiscoRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:value-of select="d:DateTimeDomain/@type"/>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:if-->
         </rdf:Description>
     </xsl:template>  
     

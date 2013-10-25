@@ -32,6 +32,10 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
     <xsl:param name="uri-use-agency">true</xsl:param>
     <xsl:param name="uri-use-version">true</xsl:param>
 
+    <xsl:variable name="base-xmlschema-url">
+        <xsl:text>http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#</xsl:text>
+    </xsl:variable>
+
     <xsl:template name="createUriByElement">
         <xsl:value-of select="$studyURI"/>
         <xsl:text>#</xsl:text>
@@ -57,12 +61,12 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
     <xsl:template name="createUriByReference">
         <xsl:value-of select="$studyURI"/>
         <xsl:text>#</xsl:text>
-        
+
         <xsl:if test="$uri-prefix-elementname='true'">
             <xsl:value-of select="lower-case(substring-before(local-name(), 'Reference'))"/>
             <xsl:text>-</xsl:text>
         </xsl:if>
-        
+
         <xsl:if test="r:IdentifyingAgency and $uri-use-agency='true'">
             <xsl:value-of select="./r:IdentifyingAgency/text()"/>
             <xsl:value-of select="$uri-deliminter"/>
@@ -75,10 +79,222 @@ Document : ddi3-1-util.xsl Description: utillities for convertions of DDI 3.1 in
             <xsl:value-of select="r:Version/text()"/>
         </xsl:if>
     </xsl:template>
-        
+
     <xsl:template name="createLanguageAttribute">
         <xsl:if test="@xml:lang">
-            <xsl:attribute name="xml:lang" select="@xml:lang" />
+            <xsl:attribute name="xml:lang" select="@xml:lang"/>
         </xsl:if>
+    </xsl:template>
+
+    <xsl:template name="createSkosLabel">
+        <xsl:choose>
+            <xsl:when test="@translated='false'">
+                <skos:prefLabel>
+                    <xsl:call-template name="createLanguageAttribute"/>
+                    <xsl:value-of select="."/>
+                </skos:prefLabel>
+            </xsl:when>
+            <xsl:when test="@translated='true'">
+                <skos:altLabel>
+                    <xsl:call-template name="createLanguageAttribute"/>
+                    <xsl:value-of select="."/>
+                </skos:altLabel>
+            </xsl:when>
+            <xsl:otherwise>
+                <skos:prefLabel>
+                    <xsl:call-template name="createLanguageAttribute"/>
+                    <xsl:value-of select="."/>
+                </skos:prefLabel>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
+
+    <xsl:template name="createRdfsTypeRepresentation">
+        <xsl:param name="type"/>
+        <disco:representation>
+            <xsl:attribute name="rdfs:Datatype">
+                <xsl:value-of select="$base-xmlschema-url"/>
+                <xsl:value-of select="$type"/>
+            </xsl:attribute>
+        </disco:representation>
+    </xsl:template>
+
+    <xsl:template name="createDiscoRepresentation">
+        <xsl:param name="type"/>
+
+        <!-- String -->
+        <xsl:if test="String">
+            <xsl:call-template name="createRdfsTypeRepresentation">
+                <xsl:with-param name="type">
+                    <xsl:text>string</xsl:text>
+                </xsl:with-param>
+            </xsl:call-template>
+        </xsl:if>
+
+        <!-- BigInteger  Integer  Long  Short  Decimal  Float  Double  Count  Incremental -->
+        <xsl:choose>
+            <!-- BigInteger -->
+            <xsl:when test="$type='BigInteger'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>integer</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Integer -->
+            <xsl:when test="$type='Integer'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>integer</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Long -->
+            <xsl:when test="$type='Long'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>long</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Short -->
+            <xsl:when test="$type='Short'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>short</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Decimal -->
+            <xsl:when test="$type='Decimal'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>decimal</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Float -->
+            <xsl:when test="$type='Float'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>float</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Double -->
+            <xsl:when test="$type='Double'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>double</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Count -->
+            <xsl:when test="$type='Count'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>integer</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Incremental -->
+            <xsl:when test="$type='Incremental'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>integer</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- DateTime  Date  Time  Year  Month  Day  MonthDay  YearMonth  Duration   -->
+            <!-- DateTime -->
+            <xsl:when test="$type='DateTime'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>datetime</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Date -->
+            <xsl:when test="$type='Date'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>date</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Time -->
+            <xsl:when test="$type='Time'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>time</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Year -->
+            <xsl:when test="$type='Year'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>year</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Month -->
+            <xsl:when test="$type='Month'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>month</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Day -->
+            <xsl:when test="$type='Day'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>day</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- MonthDay -->
+            <xsl:when test="$type='MonthDay'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>monthday</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- YearMonth -->
+            <xsl:when test="$type='YearMonth'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>yearmonth</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+
+            <!-- Duration -->
+            <xsl:when test="$type='Duration'">
+                <xsl:call-template name="createRdfsTypeRepresentation">
+                    <xsl:with-param name="type">
+                        <xsl:text>duration</xsl:text>
+                    </xsl:with-param>
+                </xsl:call-template>
+            </xsl:when>
+        </xsl:choose>
     </xsl:template>
 </xsl:stylesheet>
