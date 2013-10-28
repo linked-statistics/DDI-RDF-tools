@@ -36,20 +36,11 @@ FILENAME="${1%.*}" # remove file extension from DDI input file
 echo "[create_rdf] Processing file $1"
 
 # run xincludes
-echo "[process_xincludes] Assembling dditordf_complete.xsl from xincludes"
-./process_xincludes
+#echo "[process_xincludes] Assembling dditordf_complete.xsl from xincludes"
+#./process_xincludes
 
 # transform input DDI file to RDF using saxon
 echo "[Saxon] Transforming $1 to FO..."
 #java net.sf.saxon.Transform -s:$1 -xsl:dditordf_complete.xsl -o:$FILENAME.fo $PARAMS
-java net.sf.saxon.Transform -s:$1 -xsl:dditordf_complete.xsl -o:$FILENAME.rdf
+java net.sf.saxon.Transform -s:$1 -xsl:ddi-to-rdf.xsl -o:$FILENAME.rdf
 echo "[Saxon] File $FILENAME.rdf generated"
-
-# render PDF from FO
-#echo "[FOP] Rendering $FILENAME.fo to PDF..."
-#fop -fo $FILENAME.fo -pdf $FILENAME.pdf
-#echo "[FOP] $FILENAME.pdf generated."
-
-# cleanup
-#echo "[build_pdf] Removing .fo file"
-#rm $FILENAME.fo
