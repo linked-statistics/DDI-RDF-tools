@@ -205,7 +205,9 @@
       <!-- disco:variable -->
       <xsl:for-each select="//l:Variable">
         <disco:variable>
-          <xsl:call-template name="createUriByElement"/>
+	      <xsl:attribute name="rdf:resource">
+            <xsl:call-template name="createUriByElement"/>
+		  </xsl:attribute>
         </disco:variable>
       </xsl:for-each>
             
