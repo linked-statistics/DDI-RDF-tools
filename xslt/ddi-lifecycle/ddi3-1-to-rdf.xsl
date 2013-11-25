@@ -74,6 +74,7 @@
   <xsl:param name="uri-prefix-elementname">true</xsl:param>
   <xsl:param name="uri-use-agency">true</xsl:param>
   <xsl:param name="uri-use-version">true</xsl:param>
+  <xsl:param name="subject-prefix-uri"><xsl:value-of select="$studyURI" /><xsl:text>subject/</xsl:text></xsl:param>
   
   <!-- this param is set to true if data is publicaly accessible -->
   <xsl:param name="isPublic">false</xsl:param>
@@ -115,7 +116,7 @@
       <xsl:apply-templates select="//l:CodeScheme" />
         
       <!-- Coverage -->
-            
+      <xsl:apply-templates select="//r:Subject" />      
 	
       <!-- Location -->	
             
@@ -212,8 +213,12 @@
       </xsl:for-each>
             
       <!-- disco:HasCoverage -->
-           
-      </rdf:Description>
+      <xsl:for-each select="r:Coverage/r:TopicalCoverage/r:Subject">
+        <dcterms:subject>
+          <xsl:attribute name="rdf:resource"><xsl:value-of select="$subject-prefix-uri" /><xsl:value-of select="replace(./text(), ' ', '_')"></xsl:value-of></xsl:attribute>
+        </dcterms:subject>
+      </xsl:for-each>     
+    </rdf:Description>
         
     <xsl:if test="//d:QuestionItem|//d:MultipleQuestionItem">
       <rdf:Description>
@@ -275,7 +280,7 @@
         </xsl:attribute>
         <xsl:value-of select="." />
       </disco:subtitle>
-    </xsl:for-each>        
+    </xsl:for-each>
   </xsl:template>
           
   <!-- ========================= -->
@@ -316,7 +321,22 @@
       </xsl:for-each>
     </rdf:Description>
   </xsl:template>
-        
+ 
+  <!-- ======================== -->
+  <!-- template match r:Subject -->
+  <!-- ======================== -->
+  <xsl:template match="r:Subject">
+    <rdf:Description>
+      <xsl:attribute name="rdf:about"><xsl:value-of select="$subject-prefix-uri" /><xsl:value-of select="replace(./text(), ' ', '_')"></xsl:value-of></xsl:attribute>
+      <rdf:type>
+        <xsl:attribute name="rdf:resource"><xsl:text>http://www.w3.org/2004/02/skos/core#Concept</xsl:text></xsl:attribute>
+      </rdf:type>
+      <xsl:for-each select=".">
+        <xsl:call-template name="createSkosLabel"/>                
+      </xsl:for-each>
+    </rdf:Description>
+  </xsl:template>
+ 
   <!-- ========================= -->
   <!-- template match r:Coverage -->
   <!-- ========================= -->
