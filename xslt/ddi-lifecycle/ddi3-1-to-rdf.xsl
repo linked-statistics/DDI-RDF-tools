@@ -215,7 +215,14 @@
       <!-- disco:HasCoverage -->
       <xsl:for-each select="r:Coverage/r:TopicalCoverage/r:Subject">
         <dcterms:subject>
-          <xsl:attribute name="rdf:resource"><xsl:value-of select="$subject-prefix-uri" /><xsl:value-of select="replace(./text(), ' ', '_')"></xsl:value-of></xsl:attribute>
+          <xsl:attribute name="rdf:resource">
+            <xsl:value-of select="$subject-prefix-uri" />
+            <xsl:call-template name="string-replace-all">
+              <xsl:with-param name="text" select="./text()" />
+              <xsl:with-param name="replace"><xsl:text> </xsl:text></xsl:with-param>
+              <xsl:with-param name="by" select="_" />
+            </xsl:call-template>
+          </xsl:attribute>
         </dcterms:subject>
       </xsl:for-each>     
     </rdf:Description>
@@ -327,12 +334,24 @@
   <!-- ======================== -->
   <xsl:template match="r:Subject">
     <rdf:Description>
-      <xsl:attribute name="rdf:about"><xsl:value-of select="$subject-prefix-uri" /><xsl:value-of select="replace(./text(), ' ', '_')"></xsl:value-of></xsl:attribute>
+      <xsl:attribute name="rdf:about">
+        <xsl:value-of select="$subject-prefix-uri" />
+        <xsl:call-template name="string-replace-all">
+          <xsl:with-param name="text" select="./text()" />
+          <xsl:with-param name="replace"><xsl:text> </xsl:text></xsl:with-param>
+          <xsl:with-param name="by" select="_" />
+        </xsl:call-template>
+      </xsl:attribute>
       <rdf:type>
         <xsl:attribute name="rdf:resource"><xsl:text>http://www.w3.org/2004/02/skos/core#Concept</xsl:text></xsl:attribute>
       </rdf:type>
       <xsl:for-each select=".">
-        <xsl:call-template name="createSkosLabel"/>                
+        <skos:prefLabel>
+          <xsl:attribute name="xml:lang">
+            <xsl:value-of select="./@xml:lang" />
+          </xsl:attribute>
+          <xsl:value-of select="."/>
+        </skos:prefLabel>
       </xsl:for-each>
     </rdf:Description>
   </xsl:template>
