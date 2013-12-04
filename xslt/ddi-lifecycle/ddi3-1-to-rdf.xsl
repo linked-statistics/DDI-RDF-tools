@@ -294,13 +294,8 @@
   <!-- template match c:Universe -->
   <!-- ========================= -->
   <xsl:template match="c:Universe">
-    <rdf:Description>
-      <xsl:attribute name="rdf:about">
-        <xsl:value-of select="$studyURI" />
-        <xsl:text>#universe-</xsl:text>
-        <xsl:value-of select="@id"/>
-      </xsl:attribute>
-      <rdf:type>
+	<xsl:call-template name="createUriByElement"/>
+    <rdf:type>
         <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Universe</xsl:attribute>
       </rdf:type>            
       <xsl:for-each select="c:HumanReadable">
