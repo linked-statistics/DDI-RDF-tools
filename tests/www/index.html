@@ -4,7 +4,7 @@
 		<title>DDI-RDF SND &amp; DDA EDDI 2013</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<!-- Bootstrap -->
-		<link rel="stylesheet" href="/libraries/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css">
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -25,7 +25,7 @@
 			  <div class="col-md-4">
 				<div class="thumbnail">
 				  <h3><span class="glyphicon glyphicon-hdd"></span> <a href="/endpoint">SPARQL Endpoint</a></h3>
-				  <a href="/endpoint"><img src="/images/endpoint.jpg" alt="SPARQL endpoint"></a>
+				  <a href="/endpoint"><img src="images/endpoint.jpg" alt="SPARQL endpoint"></a>
 				  <div class="caption">
 					<p>Run SPARQL and SPARQL+ queries using the <a href="http://arc.semsol.org">ARC2</a> Endpoint</p>
 				  </div>
@@ -148,7 +148,7 @@ ORDER BY DESC(?no)
 				function get_stat(type, target){
 					$.ajax({
 						dataType: "json",
-						url: '/endpoint/',
+						url: 'http://ddi-rdf.borsna.se/endpoint/?jsonp=?',
 						data: {
 							output:'json',
 							query:'PREFIX disco: <http://rdf-vocabulary.ddialliance.org/discovery#> SELECT COUNT(*) AS ?no { ?s a disco:'+type+'}'
@@ -167,7 +167,7 @@ ORDER BY DESC(?no)
 				//Number of triples
 				$.ajax({
 					dataType: "json",
-					url: '/endpoint/',
+					url: 'http://ddi-rdf.borsna.se/endpoint/?jsonp=?',
 					data: {
 					output:'json',
 					query:'SELECT COUNT(*) AS ?no { ?s ?p ?o}'},
