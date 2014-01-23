@@ -52,11 +52,11 @@ function search_questions(search, target){
             
             //loop trough the results
             $.each(data['results']['bindings'], function(index, value){
-            
+                
                 //get questiontext
                 var question = value['questiontext']['value'];
                 //get the study
-                var study = value['value'];
+                var study = value['study']['value'];
                 
                 //add to the result div
                 $('<p>'+question+'<br /><a href="'+study+'">go to the study</a></p>').appendTo('#'+target);                
