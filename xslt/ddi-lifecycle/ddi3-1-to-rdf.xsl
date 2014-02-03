@@ -193,11 +193,11 @@
             
       <!-- disco:HasInstrument -->
       <xsl:if test="//d:QuestionItem|//d:MultipleQuestionItem">
-        <disco:questionaire>
+        <disco:instrument>
           <xsl:attribute name="rdf:resource">
             <xsl:value-of select="$studyURI" /><xsl:text>#questionnaire</xsl:text>
           </xsl:attribute>   
-        </disco:questionaire>
+        </disco:instrument>
       </xsl:if>
             
       <!-- dc:hasPart -->
@@ -306,7 +306,7 @@
           <xsl:value-of select="."/>
         </skos:definition>
       </xsl:for-each>
-    </rdf:Description>
+    <!--/rdf:Description-->
   </xsl:template>
         
   <!-- ======================== -->
