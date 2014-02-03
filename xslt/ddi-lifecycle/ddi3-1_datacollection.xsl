@@ -54,7 +54,7 @@
         <xsl:call-template name="createUriByElement"/>
       </xsl:attribute>    
       <rdf:type>
-        <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Intrument</xsl:attribute>
+        <xsl:attribute name="rdf:resource"><xsl:value-of select="$discoURI" />Instrument</xsl:attribute>
       </rdf:type>            
     </rdf:Desciption>
   </xsl:template>
@@ -83,11 +83,11 @@
             
       <!-- Question Concept -->
       <xsl:for-each select="r:ConceptReference">
-        <disco:hasConcept>
+        <disco:concept>
           <xsl:attribute name="rdf:resource">
             <xsl:call-template name="createUriByReference"/>
           </xsl:attribute>
-        </disco:hasConcept>
+        </disco:concept>
       </xsl:for-each>
             
       <!-- QuestionText -->
